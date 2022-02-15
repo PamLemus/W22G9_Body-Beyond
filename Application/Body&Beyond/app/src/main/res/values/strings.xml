@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Body&amp;Beyond</string>
+    <string name="txtAppName">BODY &amp; BEYOND</string>
+    <string name="btnLogIn">Log In</string>
+    <string name="txtEmail">Email</string>
+    <string name="txtPwd">Password</string>
+    <string name="txtAltLogin">Or</string>
+    <string name="txtLogIn">Log In</string>
+</resources>
