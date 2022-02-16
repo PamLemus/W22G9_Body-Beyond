@@ -6,4 +6,9 @@
     <string name="txtPwd">Password</string>
     <string name="txtAltLogin">Or</string>
     <string name="txtLogIn">Log In</string>
+    <string name="AppName"><![CDATA[BODY & BEYOND]]></string>
+    <string name="txtChallenge">Challenge Yourself</string>
+    <string name="txtHomeDescription">Start challenging yourself and create a healthy balanced lifestyle for yourself for leading healthy life.</string>
+    <string name="imgLogoDescription">BodyBeyondLogo</string>
+    <string name="CreateAccount">Create an Account</string>
 </resources>
