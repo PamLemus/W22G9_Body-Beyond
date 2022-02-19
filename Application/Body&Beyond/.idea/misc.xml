@@ -14,7 +14,9 @@
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_splash.xml" value="0.14666666666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.192481884057971" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.625" />
+        <entry key="app/src/main/res/layout/activity_sign_up_details.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20878623188405798" />
       </map>
     </option>
   </component>
