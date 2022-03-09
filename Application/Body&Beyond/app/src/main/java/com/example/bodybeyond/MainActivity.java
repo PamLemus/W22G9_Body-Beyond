@@ -20,15 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogIn.setOnClickListener((View btnView) -> {
         startActivity(new Intent(MainActivity.this, Login.class));
+        });
 
         txtCreateAccount.setOnClickListener((View txtView) -> {
             startActivity(new Intent(MainActivity.this, SignUp.class));
-
-
         });
 
-
-        });
     }
 
 }
