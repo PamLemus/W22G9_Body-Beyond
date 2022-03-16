@@ -1,4 +1,4 @@
-package com.example.bodybeyond;
+package com.example.bodybeyond.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.bodybeyond.R;
 
 public class Login extends AppCompatActivity {
 
@@ -15,7 +18,7 @@ public class Login extends AppCompatActivity {
     EditText emailId;
     EditText password;
     Button btnLogIn;
-
+    TextView forgetPwd;
 
 
     @Override

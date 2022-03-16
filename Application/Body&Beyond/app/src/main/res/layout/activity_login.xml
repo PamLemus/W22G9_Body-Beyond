@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFABE"
-    tools:context=".Login">
+    tools:context=".activities.Login">
 
     <EditText
         android:id="@+id/txtEmail"
@@ -33,21 +33,20 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
+        android:autofillHints=""
         android:background="@android:color/white"
         android:ems="10"
         android:fontFamily="@font/roboto"
         android:hint="@string/txtPwd"
-        android:padding="16dp"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-        app:layout_constraintVertical_bias="0.044"
-        tools:ignore="TextContrastCheck"
-        android:autofillHints=""/>
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btnLogIn"
@@ -66,23 +65,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPwd"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintTop_toBottomOf="@+id/txtforgetPwd"
+        app:layout_constraintVertical_bias="0.144" />
 
     <TextView
-        android:id="@+id/txtAlternateLogin"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/txtforgetPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:text="@string/txtAltLogin"
+        android:text="@string/txtForgetPwd"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPwd" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

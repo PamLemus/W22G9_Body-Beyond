@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BodyBeyond">
         <activity
-            android:name=".CalculateBMIActivity"
+            android:name=".activities.CalculateBMIActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpDetails"
+            android:name=".activities.SignUpDetails"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -26,13 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignUp"
+            android:name=".activities.SignUp"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".activities.Login"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 

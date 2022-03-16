@@ -1,8 +1,10 @@
-package com.example.bodybeyond;
+package com.example.bodybeyond.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.bodybeyond.R;
 
 public class CalculateBMIActivity extends AppCompatActivity {
 

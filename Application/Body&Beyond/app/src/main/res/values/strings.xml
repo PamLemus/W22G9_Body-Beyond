@@ -4,7 +4,7 @@
     <string name="btnLogIn">Log In</string>
     <string name="txtEmail">Email</string>
     <string name="txtPwd">Password</string>
-    <string name="txtAltLogin">Or</string>
+    <string name="txtForgetPwd">Forget Password?</string>
     <string name="txtLogIn">Log In</string>
     <string name="AppName"><![CDATA[BODY & BEYOND]]></string>
     <string name="txtChallenge">Challenge Yourself</string>
