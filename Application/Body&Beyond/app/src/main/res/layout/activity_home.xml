@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_yellow"
+    tools:context=".HomeActivity">
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navResultBMI"
+        android:layout_width="370dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/yourBMI"
+            app:srcCompat="@drawable/bmi" />
+
+        <TextView
+            android:id="@+id/txtBMI"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/yourBMI"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtBMIResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="24.2"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="330dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="90dp"
+            android:background="@color/font_secondary" />
+
+        <TextView
+            android:id="@+id/txtBMIResultDescr"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="105dp"
+            android:text="Underweight = less than 18.5 , Normal weight = 18.5–24.9 Overweight = 25–29.9, Obesity = BMI of 30 or greater"
+            android:textAlignment="center" />
+
+    </com.google.android.material.navigation.NavigationView>
+
+    <Button
+        android:id="@+id/btnCalculateAgain"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/calculate"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navResultBMI" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.bodybeyond.HomeActivity;
 import com.example.bodybeyond.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
         txtCreateAccount.setOnClickListener((View txtView) -> {
             startActivity(new Intent(MainActivity.this, SignUp.class));
+        });
+
+        Button home = findViewById(R.id.btnHome);
+        home.setOnClickListener((View view) -> {
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+
         });
 
     }

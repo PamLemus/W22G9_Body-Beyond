@@ -27,6 +27,9 @@
     <string name="HeightText">Height in cms</string>
     <string name="WeightText">Weight in Kgs</string>
     <string name="spinnerDefaultText">Activity</string>
+    <string name="forgotPass">Forgot Password?</string>
+    <string name="yourBMI">Your BMI</string>
+    <string name="calculate">Calculate Again</string>
     <string-array name="Activities">
         <item>Little or no exercise</item>
         <item>Exercise 1-3 times/week</item>
