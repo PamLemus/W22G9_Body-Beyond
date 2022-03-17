@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         TextView txtCreateAccount = findViewById(R.id.txtViewCreateAccount);
 
         btnLogIn.setOnClickListener((View btnView) -> {
-        startActivity(new Intent(MainActivity.this, Login.class));
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
         });
 
         txtCreateAccount.setOnClickListener((View txtView) -> {

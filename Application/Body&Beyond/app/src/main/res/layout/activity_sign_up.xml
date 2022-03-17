@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/backBtn"
+        android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -113,6 +115,7 @@
         android:layout_marginEnd="20dp"
         android:background="#4267B2"
         android:backgroundTintMode="add"
+        android:contentDescription="@string/btnFBDescrption"
         android:text="@string/facebookText"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

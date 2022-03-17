@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.bodybeyond.R;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     final String TAG = "LOGIN_ACTIVITY";
     EditText emailId;
