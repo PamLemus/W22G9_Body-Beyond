@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.bodybeyond.HomeActivity;
 import com.example.bodybeyond.R;
 
 public class MainActivity extends AppCompatActivity {

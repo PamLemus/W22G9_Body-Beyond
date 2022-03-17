@@ -1,22 +1,31 @@
-package com.example.bodybeyond;
+package com.example.bodybeyond.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
-import com.example.bodybeyond.activities.CalculateBMIActivity;
+import com.example.bodybeyond.R;
+import com.example.bodybeyond.adapters.ViewPagerDietExerciseAdapter;
+import com.example.bodybeyond.fragments.DietFragment;
+import com.example.bodybeyond.fragments.ExerciseFragment;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeActivity extends AppCompatActivity {
+
+    TabLayout tabLayoutDietExercise;
+    ViewPager viewPagerDietExercise;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +59,20 @@ public class HomeActivity extends AppCompatActivity {
               startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
 
         });
+
+        ProgressBar progressBarSteps = findViewById(R.id.progressBarSteps);
+        progressBarSteps.setMax(100);  // target steps
+        progressBarSteps.setProgress(80);  //steps walked
+
+        tabLayoutDietExercise = findViewById(R.id.tabLayoutDietExercise);
+        viewPagerDietExercise = findViewById(R.id.viePagerDietExercise);
+
+        tabLayoutDietExercise.setupWithViewPager(viewPagerDietExercise);
+        ViewPagerDietExerciseAdapter vpDEAdapter = new ViewPagerDietExerciseAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        vpDEAdapter.addFragmentsDE(new DietFragment(), "Diet");
+        vpDEAdapter.addFragmentsDE(new ExerciseFragment(), "Exercise");
+        viewPagerDietExercise.setAdapter(vpDEAdapter);
+
 
     }
 }
