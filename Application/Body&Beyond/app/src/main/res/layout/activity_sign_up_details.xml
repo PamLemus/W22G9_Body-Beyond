@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignUpDetails">
+    tools:context=".activities.SignUpDetailsActivity">
 
     <EditText
         android:id="@+id/editTextTextName"
@@ -96,9 +96,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:contentDescription="@string/backBtn"
+        android:minWidth="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:srcCompat="@android:drawable/ic_input_delete" />
 
     <TextView
         android:id="@+id/textViewsignup"
@@ -119,27 +121,25 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
         <RadioButton
             android:id="@+id/radioButtonFemale"
-            android:layout_width="match_parent"
+            android:layout_width="123dp"
             android:layout_height="wrap_content"
+            android:layout_weight="20"
             android:text="@string/FemaleText" />
 
         <RadioButton
             android:id="@+id/radioButtonMale"
-            android:layout_width="match_parent"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
+            android:layout_weight="80"
             android:text="@string/maletext" />
 
-        <RadioButton
-            android:id="@+id/radioButtonOthers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/OthersText" />
     </RadioGroup>
 
     <TextView
@@ -157,12 +157,38 @@
     <Spinner
         android:id="@+id/spinnerActivity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:background="?attr/actionModeBackground"
+        android:entries="@array/Activities"
         android:prompt="@string/spinnerDefaultText"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextWeight" />
+
+    <Button
+        android:id="@+id/buttonSignup"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/signUptext"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerActivity"
+        app:rippleColor="@color/font_secondary" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
