@@ -36,12 +36,15 @@
     <string name="burned">Burned</string>
     <string name="cal">cal</string>
     <string name="dietExer">Based on your results, we suggest for you:</string>
-    <string name="backBtn">backButton</string>
-    <string name="btnFBDescrption">btnFBDescription</string>
     <string-array name="Activities">
         <item>Little or no exercise</item>
         <item>Exercise 1-3 times/week</item>
         <item>Exercise 4-5 times/week</item>
         <item>Daily Exercise or intense exercise 3-4 times/week</item>
     </string-array>
+    <string name="facebook_app_id">1017641738827269</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">ff50902edd4054d177bc191226bf3ab4</string>
+    <string name="btnFBDescrption">Facebook button</string>
+    <string name="backBtn">Back Button</string>
 </resources>
