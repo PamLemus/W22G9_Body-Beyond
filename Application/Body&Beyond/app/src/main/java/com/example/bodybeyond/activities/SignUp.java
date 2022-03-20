@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -41,7 +42,7 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
     private Button GoogleSignUp;
     private Button FacebookSignUp;
     private Button SignUpBtn;
-
+    EditText email;
 
     //Google Login
     private GoogleApiClient googleApiClient;
@@ -55,8 +56,24 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        email = findViewById(R.id.txtEmailId);
+
+        SignUpBtn = findViewById(R.id.buttonContinue);
+        SignUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(SignUp.this, "Inside continue btn", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("EMAIL", email.getText().toString());
+                Intent intent = new Intent(SignUp.this, SignUpDetails.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         SharedPreferences sharedPreferences = getSharedPreferences("FIELD_VISIBILITY", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
+
+
 //        Implementation steps for gmail login:
 //        1.Goto the browser and type integerating google login with android app
 //        2.Select Start Integrating Google Sign-In into Your Android App (https://developers.google.com/identity/sign-in/android/start-integrating)
@@ -79,7 +96,7 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSignUp = findViewById(R.id.buttonFacebook);
         callbackManager = CallbackManager.Factory.create();
-        SignUpBtn = findViewById(R.id.buttonContinue);
+
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions).build();
