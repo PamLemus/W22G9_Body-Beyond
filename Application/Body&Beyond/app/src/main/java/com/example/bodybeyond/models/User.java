@@ -1,14 +1,45 @@
 package com.example.bodybeyond.models;
 
-public class User {
-    String userName;
-    int userAge;
-    char userGender;
-    double userHeight;
-    double userWeight;
-    String activity;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-    public User(String userName, int userAge, char userGender, double userHeight, double userWeight, String activity) {
+@Entity(tableName = "users")
+public class User {
+
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo(name = "useremail")
+    private String userEmail;
+
+    @NonNull
+    @ColumnInfo(name = "username")
+    private String userName;
+
+    @NonNull
+    @ColumnInfo(name="userAage")
+    private int userAge;
+
+    @ColumnInfo(name="usergender")
+    private String userGender;
+
+    @NonNull
+    @ColumnInfo(name="userheight")
+    private double userHeight;
+
+    @NonNull
+    @ColumnInfo(name="userweight")
+    private double userWeight;
+
+    @ColumnInfo(name="activity")
+    private String activity;
+
+    public User(){}
+
+    public User(@NonNull String userEmail, @NonNull String userName, int userAge, String userGender,
+                double userHeight, double userWeight, String activity) {
+        this.userEmail = userEmail;
         this.userName = userName;
         this.userAge = userAge;
         this.userGender = userGender;
@@ -17,11 +48,21 @@ public class User {
         this.activity = activity;
     }
 
+    @NonNull
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(@NonNull String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    @NonNull
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public void setUserName(@NonNull String userName) {
         this.userName = userName;
     }
 
@@ -33,11 +74,11 @@ public class User {
         this.userAge = userAge;
     }
 
-    public char getUserGender() {
+    public String getUserGender() {
         return userGender;
     }
 
-    public void setUserGender(char userGender) {
+    public void setUserGender(String userGender) {
         this.userGender = userGender;
     }
 

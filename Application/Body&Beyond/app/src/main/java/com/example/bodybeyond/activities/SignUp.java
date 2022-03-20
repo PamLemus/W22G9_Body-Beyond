@@ -1,9 +1,5 @@
 package com.example.bodybeyond.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bodybeyond.R;
 import com.facebook.AccessToken;
@@ -24,7 +23,6 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
@@ -59,17 +57,15 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
         email = findViewById(R.id.txtEmailId);
 
         SignUpBtn = findViewById(R.id.buttonContinue);
-        SignUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        SignUpBtn.setOnClickListener((View view) ->{
                 Toast.makeText(SignUp.this, "Inside continue btn", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
                 bundle.putString("EMAIL", email.getText().toString());
                 Intent intent = new Intent(SignUp.this, SignUpDetails.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
-            }
         });
+
         SharedPreferences sharedPreferences = getSharedPreferences("FIELD_VISIBILITY", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
 

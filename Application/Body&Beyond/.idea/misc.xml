@@ -26,9 +26,10 @@
         <entry key="..\:/Project-3175-001/Application/Body&amp;Beyond/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/Project-3175-001/Application/Body&amp;Beyond/app/src/main/res/layout/fragment_diet.xml" value="0.25" />
         <entry key="..\:/Project-3175-001/Application/Body&amp;Beyond/app/src/main/res/layout/fragment_exercise.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.22418478260869565" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.47616119384765626" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.625" />
-        <entry key="app/src/main/res/layout/activity_sign_up_details.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_sign_up_details.xml" value="0.28022626631099024" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20878623188405798" />
       </map>
     </option>

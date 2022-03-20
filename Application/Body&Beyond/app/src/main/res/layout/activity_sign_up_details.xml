@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.SignUpDetailsActivity">
+    tools:context=".activities.SignUpDetails">
 
     <EditText
         android:id="@+id/editTextTextName"
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
@@ -47,7 +47,7 @@
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
@@ -65,7 +65,7 @@
         android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
@@ -83,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/roboto"
         android:text="@string/detailsText"
         android:textColor="@color/black"
@@ -118,7 +118,7 @@
     <RadioGroup
         android:id="@+id/radioGroupGender"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="horizontal"
@@ -129,16 +129,20 @@
         <RadioButton
             android:id="@+id/radioButtonFemale"
             android:layout_width="123dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="20"
-            android:text="@string/FemaleText" />
+            android:checked="false"
+            android:text="@string/FemaleText"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioButtonMale"
             android:layout_width="20dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="80"
-            android:text="@string/maletext" />
+            android:checked="true"
+            android:text="@string/maletext"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
     </RadioGroup>
 
@@ -147,7 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/GenderText"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -159,11 +163,10 @@
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="?attr/actionModeBackground"
-        android:entries="@array/Activities"
-        android:prompt="@string/spinnerDefaultText"
+        android:contentDescription="@string/des"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +184,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerActivity"
-        app:rippleColor="@color/font_secondary" />
+        app:rippleColor="@color/font_secondary"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/textView3"
