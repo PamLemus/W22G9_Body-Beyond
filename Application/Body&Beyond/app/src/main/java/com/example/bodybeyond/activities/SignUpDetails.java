@@ -107,7 +107,8 @@ public class SignUpDetails extends AppCompatActivity {
                          if(user != null &&  userdao != null)
                          {
                              QueryExecution(user, userdao);
-                             startActivity(new Intent(SignUpDetails.this, HomeActivity.class));
+                            // there is some error on home activity.
+                           //  startActivity(new Intent(SignUpDetails.this, HomeActivity.class));
                          }
 
                     }
@@ -156,7 +157,7 @@ public class SignUpDetails extends AppCompatActivity {
     }
 
     private void DBConnection() {
-        db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyandBeyondDB.db").build();
+        db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db").build();
         userdao = db.userDao();
     }
 

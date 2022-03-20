@@ -101,10 +101,11 @@
         android:background="#DB4437"
         android:backgroundTintMode="add"
         android:text="@string/googleText"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewOr" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewOr"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/buttonFacebook"
@@ -117,7 +118,7 @@
         android:backgroundTintMode="add"
         android:contentDescription="@string/btnFBDescrption"
         android:text="@string/facebookText"
-        android:textColor="@color/black"
+        android:textColor="#EDE7F6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />

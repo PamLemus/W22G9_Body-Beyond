@@ -55,7 +55,6 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         email = findViewById(R.id.txtEmailId);
-
         SignUpBtn = findViewById(R.id.buttonContinue);
         SignUpBtn.setOnClickListener((View view) ->{
                 Toast.makeText(SignUp.this, "Inside continue btn", Toast.LENGTH_SHORT).show();
@@ -89,6 +88,7 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
 //        2.After App creation. Click on doc and select facebook login
 //        3.Select Android and select the newly created app.
 //        4.Follow the instruction as follow
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSignUp = findViewById(R.id.buttonFacebook);
         callbackManager = CallbackManager.Factory.create();
@@ -163,8 +163,7 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
     }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    }
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
