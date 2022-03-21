@@ -1,6 +1,5 @@
 package com.example.bodybeyond.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +28,7 @@ public class SignUpDetails extends AppCompatActivity {
 
     EditText name;
     EditText age;
-    RadioGroup rdGrpgender;
+    RadioGroup rdGrpGender;
     EditText height;
     EditText weight;
     Spinner spinnerActivity;
@@ -46,7 +45,7 @@ public class SignUpDetails extends AppCompatActivity {
     );
     BodyAndBeyondDB db;
     boolean flag = false;
-    int userage;
+    int userAge;
     double userWeight,userHeight;
     User user = null;
     UserDao userdao = null;
@@ -59,29 +58,18 @@ public class SignUpDetails extends AppCompatActivity {
         String email = getIntent().getExtras().getString("EMAIL", null);
         name = findViewById(R.id.editTextTextName);
         age = findViewById(R.id.editTextAge);
-        rdGrpgender = findViewById(R.id.radioGroupGender);
+        rdGrpGender = findViewById(R.id.radioGroupGender);
         height = findViewById(R.id.editTextHeight);
         weight = findViewById(R.id.editTextWeight);
         spinnerActivity = findViewById(R.id.spinnerActivity);
         spinnerActivity.setAdapter(spinnerAdapter);
         signup = findViewById(R.id.buttonSignup);
-        /*int userage = Integer.parseInt(age.getText().toString());
-        double userWeight = Double.parseDouble(weight.getText().toString());
-        double userHeight = Double.parseDouble(height.getText().toString());
-        if(rdGrpgender.getCheckedRadioButtonId() == R.id.radioButtonFemale){
-            userGender = FEMALE;
-        }
-        else{
-            userGender = MALE;
-        }*/
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        signup.setOnClickListener((View view) -> {
                     Validation();
                     if(flag)
                     {
-                        if(rdGrpgender.getCheckedRadioButtonId() == R.id.radioButtonFemale){
+                        if(rdGrpGender.getCheckedRadioButtonId() == R.id.radioButtonFemale){
                             userGender = FEMALE;
                         }
                         else{
@@ -101,7 +89,7 @@ public class SignUpDetails extends AppCompatActivity {
                                 selectedActivity = ACTIVITY_ACTIVE;
                                 break;
                         }
-                        user = new User(email, name.getText().toString(), userage,
+                        user = new User(email, name.getText().toString(), userAge,
                                 userGender, userHeight, userWeight, selectedActivity);
                          DBConnection();
                          if(user != null &&  userdao != null)
@@ -110,21 +98,22 @@ public class SignUpDetails extends AppCompatActivity {
                             // there is some error on home activity.
                            //  startActivity(new Intent(SignUpDetails.this, HomeActivity.class));
                          }
-
                     }
-                }
+                    else{
+                        Toast.makeText(this, "Sign up failed.", Toast.LENGTH_SHORT).show();
+                    }
         });
     }
 
     private void Validation() {
-        if((age.getText().toString().isEmpty() || age.getText().toString() == null)
-                || (weight.getText().toString().isEmpty() || weight.getText().toString() == null)
-                || (height.getText().toString().isEmpty() || height.getText().toString() == null)) {
+        if((age.getText().toString().isEmpty())
+                || (weight.getText().toString().isEmpty())
+                || (height.getText().toString().isEmpty())) {
             Toast.makeText(SignUpDetails.this, "Please enter age, height and weight.", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            userage = Integer.parseInt(age.getText().toString());
+            userAge = Integer.parseInt(age.getText().toString());
             userWeight = Double.parseDouble(weight.getText().toString());
            userHeight = Double.parseDouble(height.getText().toString());
         }
@@ -133,7 +122,7 @@ public class SignUpDetails extends AppCompatActivity {
             Toast.makeText(SignUpDetails.this, "Name field is empty.", Toast.LENGTH_SHORT).show();
             flag = false;
         }
-        else if(userage <= 0)
+        else if(userAge <= 0)
         {
             Toast.makeText(SignUpDetails.this, "Age must be greater than zero.", Toast.LENGTH_SHORT).show();
             flag = false;

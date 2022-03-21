@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.bodybeyond.R;
@@ -34,7 +35,7 @@ public class CalculateBMIActivity extends AppCompatActivity implements GoogleApi
     private EditText height;
     private EditText weight;
     ActivityCalculateBmiactivityBinding binding;
-
+    ImageButton backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,13 @@ public class CalculateBMIActivity extends AppCompatActivity implements GoogleApi
         View view = binding.getRoot();
         setContentView(view);
 
+        backBtn = binding.imgBackBtnCalBmi;
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CalculateBMIActivity.this, HomeActivity.class));
+            }
+        });
         SharedPreferences preferences = getSharedPreferences("FIELD_VISIBILITY", MODE_PRIVATE);
         boolean visibility = preferences.getBoolean("VISIBILITY", false);
 
@@ -72,7 +80,7 @@ public class CalculateBMIActivity extends AppCompatActivity implements GoogleApi
                     public void onResult(@NonNull Status status) {
                         if (status.isSuccess()) {
                             //Perform Database operation
-                            startActivity(new Intent(CalculateBMIActivity.this, HomeActivity.class));
+                            startActivity(new Intent(CalculateBMIActivity.this, ExerciseActivity.class));
                             finish();
                         } else {
                             Toast.makeText(CalculateBMIActivity.this, "Log out failed!!", Toast.LENGTH_SHORT).show();

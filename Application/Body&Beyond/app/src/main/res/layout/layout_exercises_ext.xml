@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exercisesLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtExerciseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/exerciseName"
+            android:textSize="20sp"
+            android:layout_marginBottom="0dp"
+            android:textStyle="bold"
+            android:padding="10dp"/>
+
+        <ImageView
+            android:id="@+id/exerciseListImageViewId"
+            android:layout_width="wrap_content"
+            android:layout_height="253dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="@string/exerciseImageDesc"
+            app:srcCompat="@drawable/bmi"
+            android:background="#EFEFEF"/>
+
+        <TextView
+            android:id="@+id/txtExerciseDescId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:hint="@string/txtExerciseDescription"
+            android:paddingLeft="10dp"
+            android:textColorHint="#757575"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"/>
+</LinearLayout>

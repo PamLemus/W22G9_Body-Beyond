@@ -44,4 +44,10 @@
     <string name="des">Description</string>
     <string name="txtExerciseTitle">Exercises for transformation</string>
     <string name="imgContentDesc">Back button on Exercise screen</string>
+    <string name="exerciseImageDesc">Exercise Images</string>
+    <string name="txtExerciseDescription">Exercise Description.</string>
+    <string name="exerciseName">Exercise Name</string>
+    <string name="imgCalBmi">Calculate BMI Image</string>
+    <string name="txtCalBmi">Calculate BMI</string>
+    <string name="backBtnReadableLabel">Back Button</string>
 </resources>
