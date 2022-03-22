@@ -32,7 +32,7 @@
     <string name="WeightText">Weight in Kgs</string>
     <string name="spinnerDefaultText">Activity</string>
     <string name="forgotPass">Forgot Password?</string>
-    <string name="yourBMI">Your BMI</string>
+    <string name="yourBMI">Your BMI is:</string>
     <string name="calculate">Calculate Again</string>
     <string name="suggestedCal">Suggested Calories intake</string>
     <string name="slash">/</string>
