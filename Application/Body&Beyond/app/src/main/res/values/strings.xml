@@ -4,7 +4,11 @@
     <string name="btnLogIn">Log In</string>
     <string name="txtEmail">Email</string>
     <string name="txtPwd">Password</string>
+    <string name="txtNewPwd">New Password</string>
+    <string name="txtConfirmPwd">Confirm Password</string>
+    <string name="txtChangePwd">Change Password</string>
     <string name="txtForgetPwd">Forget Password?</string>
+    <string name="txtForgetPwdInner">Forget Password</string>
     <string name="txtLogIn">Log In</string>
     <string name="AppName"><![CDATA[BODY & BEYOND]]></string>
     <string name="txtChallenge">Challenge Yourself</string>
@@ -50,4 +54,5 @@
     <string name="imgCalBmi">Calculate BMI Image</string>
     <string name="txtCalBmi">Calculate BMI</string>
     <string name="backBtnReadableLabel">Back Button</string>
+    <string name="txtForgotPwd">Forgot Password</string>
 </resources>

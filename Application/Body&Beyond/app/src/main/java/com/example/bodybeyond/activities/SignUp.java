@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,6 +42,7 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
     private Button FacebookSignUp;
     private Button SignUpBtn;
     EditText email;
+    ImageButton backBtn;
 
     //Google Login
     private GoogleApiClient googleApiClient;
@@ -54,6 +56,13 @@ public class SignUp extends AppCompatActivity implements GoogleApiClient.OnConne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        backBtn = findViewById(R.id.imgSignupBckBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUp.this, MainActivity.class));
+            }
+        });
         email = findViewById(R.id.txtEmailId);
         SignUpBtn = findViewById(R.id.buttonContinue);
         SignUpBtn.setOnClickListener((View view) ->{

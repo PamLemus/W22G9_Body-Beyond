@@ -4,39 +4,38 @@
     android:id="@+id/exercisesLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-        <TextView
-            android:id="@+id/txtExerciseName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/exerciseName"
-            android:textSize="20sp"
-            android:layout_marginBottom="0dp"
-            android:textStyle="bold"
-            android:padding="10dp"/>
+    <TextView
+        android:id="@+id/txtExerciseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/exerciseName"
+        android:padding="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/exerciseListImageViewId"
-            android:layout_width="wrap_content"
-            android:layout_height="253dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:contentDescription="@string/exerciseImageDesc"
-            app:srcCompat="@drawable/bmi"
-            android:background="#EFEFEF"/>
+    <ImageView
+        android:id="@+id/exerciseListImageViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#EFEFEF"
+        android:contentDescription="@string/exerciseImageDesc"
+        app:srcCompat="@drawable/bmi" />
 
-        <TextView
-            android:id="@+id/txtExerciseDescId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:hint="@string/txtExerciseDescription"
-            android:paddingLeft="10dp"
-            android:textColorHint="#757575"
-            android:textSize="14sp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"/>
-            android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/txtExerciseDescId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:hint="@string/txtExerciseDescription"
+        android:padding="5dp"
+        android:textColorHint="#757575"
+        android:textSize="14sp" />
+    android:layout_marginTop="10dp"/>
 </LinearLayout>

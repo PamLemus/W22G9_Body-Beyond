@@ -31,6 +31,17 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.txtPwd);
         btnLogIn = findViewById(R.id.btnLogIn);
         backBtn = findViewById(R.id.imgLoginBackBtn);
+        forgetPwd = findViewById(R.id.txtforgetPwd);
+        forgetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("EMAIL", emailId.getText().toString());
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
