@@ -36,10 +36,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="120dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="18dp"
+                    android:id="@+id/imgBMIresult"
+                    android:layout_width="170dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="6dp"
                     android:contentDescription="@string/yourBMI"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -47,23 +47,22 @@
 
                 <TextView
                     android:id="@+id/txtBMI"
-                    android:layout_width="110dp"
+                    android:layout_width="120dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="12dp"
                     android:layout_marginTop="48dp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/yourBMI"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/imgBMIresult"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/txtBMIResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="2dp"
                     android:layout_marginTop="48dp"
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/black"
@@ -75,7 +74,7 @@
                     android:id="@+id/line"
                     android:layout_width="330dp"
                     android:layout_height="2dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/font_secondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +83,7 @@
                 <TextView
                     android:id="@+id/txtBMIResultDescr"
                     android:layout_width="300dp"
-                    android:layout_height="35dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="20dp"
                     android:text="Underweight = less than 18.5 , Normal weight = 18.5–24.9 Overweight = 25–29.9, Obesity = BMI of 30 or greater"
                     android:textAlignment="center"
@@ -117,7 +116,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ConstraintLayoutCalories"
                 android:layout_width="355dp"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginTop="32dp"
                 android:background="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -252,7 +251,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/line2" />
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/txtStepsProgressPercentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -270,9 +269,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:layout_marginTop="18dp"
                     android:layout_marginEnd="12dp"
                     android:progressDrawable="@drawable/custom_progress"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBurnedDescr" />
@@ -281,11 +280,11 @@
                     android:id="@+id/txtSuggeDietExerc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/dietExer"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/progressBarSteps" />
@@ -312,11 +311,13 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.tabs.TabItem
+                        android:id="@+id/TabItemDiets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Diets" />
 
                     <com.google.android.material.tabs.TabItem
+                        android:id="@+id/TabItemExercise"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Exercise" />

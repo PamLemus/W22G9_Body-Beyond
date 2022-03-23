@@ -1,5 +1,6 @@
 package com.example.bodybeyond.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,8 +96,8 @@ public class SignUpDetails extends AppCompatActivity {
                          if(user != null &&  userdao != null)
                          {
                              QueryExecution(user, userdao);
-                            // there is some error on home activity.
-                           //  startActivity(new Intent(SignUpDetails.this, HomeActivity.class));
+
+                            startActivity(new Intent(SignUpDetails.this, HomeActivity.class));
                          }
                     }
                     else{

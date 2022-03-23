@@ -35,7 +35,9 @@ public class User {
     @ColumnInfo(name="activity")
     private String activity;
 
-    public User(){}
+    public User(){
+
+    }
 
     public User(@NonNull String userEmail, @NonNull String userName, int userAge, String userGender,
                 double userHeight, double userWeight, String activity) {
