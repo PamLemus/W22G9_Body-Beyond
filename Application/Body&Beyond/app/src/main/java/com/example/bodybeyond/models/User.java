@@ -10,49 +10,44 @@ public class User {
 
     @NonNull
     @PrimaryKey
-    @ColumnInfo(name = "userEmail")
+    @ColumnInfo(name = "useremail")
     private String userEmail;
 
     @NonNull
-    @ColumnInfo(name = "userName")
+    @ColumnInfo(name = "username")
     private String userName;
 
     @NonNull
-    @ColumnInfo(name="userAge")
+    @ColumnInfo(name="userAage")
     private int userAge;
 
-    @ColumnInfo(name="userGender")
+    @ColumnInfo(name="usergender")
     private String userGender;
 
     @NonNull
-    @ColumnInfo(name="userHeight")
+    @ColumnInfo(name="userheight")
     private double userHeight;
 
     @NonNull
-    @ColumnInfo(name="userWeight")
+    @ColumnInfo(name="userweight")
     private double userWeight;
 
-    @ColumnInfo(name="activityType")
-    private String activityType;
-
-    @ColumnInfo(name="password")
-    private String password;
-
+    @ColumnInfo(name="activity")
+    private String activity;
 
     public User(){
 
     }
 
     public User(@NonNull String userEmail, @NonNull String userName, int userAge, String userGender,
-                double userHeight, double userWeight, String activityType, String password) {
+                double userHeight, double userWeight, String activity) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userAge = userAge;
         this.userGender = userGender;
         this.userHeight = userHeight;
         this.userWeight = userWeight;
-        this.activityType = activityType;
-        this.password = password;
+        this.activity = activity;
     }
 
     @NonNull
@@ -105,19 +100,11 @@ public class User {
         this.userWeight = userWeight;
     }
 
-    public String getActivityType() {
-        return activityType;
+    public String getActivity() {
+        return activity;
     }
 
-    public void setActivityType(String activityType) {
-        this.activityType = activityType;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setActivity(String activity) {
+        this.activity = activity;
     }
 }

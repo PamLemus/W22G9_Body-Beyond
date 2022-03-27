@@ -1,25 +1,16 @@
 package com.example.bodybeyond.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.bodybeyond.database.BodyAndBeyondDB;
 import com.example.bodybeyond.databinding.ActivityForgotPasswordBinding;
-import com.example.bodybeyond.interfaces.UserDao;
-import com.example.bodybeyond.utilities.Helper;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -28,9 +19,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button changePwdBtn;
     EditText newPwd;
     EditText confirmPwd;
-
-    BodyAndBeyondDB db;
-    UserDao userDao;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,19 +41,20 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         changePwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean isValid = Validation(newPwd.getText().toString(), confirmPwd.getText().toString());
-                if(isValid)
+                if(newPwd.getText().toString().isEmpty() || confirmPwd.getText().toString().isEmpty())
                 {
+                    Toast.makeText(ForgotPasswordActivity.this, "Password field is empty.", Toast.LENGTH_SHORT).show();
+                }
+                else if(newPwd.getText().toString() != confirmPwd.getText().toString()){
+                    Toast.makeText(ForgotPasswordActivity.this, "Passwords is not same.", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     Bundle bundle = getIntent().getExtras();
                     String email = bundle.getString("EMAIL", null);
                     if(email != null && !email.isEmpty())
                     {
-                        DBConnection();
-                        boolean response = UpdatePassword(email,newPwd.getText().toString(), userDao);
-                        if(response)
-                        {
-                            startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
-                        }
+                        //Do database operation to same new password in user table
+                        startActivity(new Intent(ForgotPasswordActivity.this, LoginActivity.class));
                     }
                     else
                     {
@@ -74,57 +64,5 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
         
-    }
-
-    private boolean Validation(String newPassword, String confirmPassword) {
-        if(newPassword.isEmpty() || confirmPassword.isEmpty())
-        {
-            Toast.makeText(ForgotPasswordActivity.this, "Password field is empty.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if(newPassword.length() < 8 && !(new Helper().isValidPassword(newPassword)))
-        {
-            Toast.makeText(ForgotPasswordActivity.this, "New passwords is invalid.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if(confirmPassword.length() < 8 && !(new Helper().isValidPassword(confirmPassword)))
-        {
-            Toast.makeText(ForgotPasswordActivity.this, "Confirm passwords is invalid.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if(!newPassword.equals(confirmPassword)){
-            Toast.makeText(ForgotPasswordActivity.this, "New passwords and confirm password is not same.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    private void DBConnection() {
-        db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
-                .allowMainThreadQueries().build();
-        userDao = db.userDao();
-    }
-
-    private boolean UpdatePassword(String email, String password, UserDao userDao)
-    {
-        AtomicBoolean flag = new AtomicBoolean(false);
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
-            try {
-              int response =  userDao.updateUserPassword(email, password);
-              if(response == 1)
-              {
-                  flag.set(true);
-              }
-            } catch (Exception ex) {
-                Log.d("Db", ex.getMessage());
-            }
-
-//        });
-
-        return flag.get();
     }
 }

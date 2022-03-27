@@ -6,7 +6,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -71,9 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
         calculate.setOnClickListener((View view) -> {
-            SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
-            sharedPreferences.edit().clear().apply();
-          //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
             startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
 
         });
