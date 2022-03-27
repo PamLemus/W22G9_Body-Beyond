@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView BMIDescrp;
     ImageView BMIImgResult;
     TextView txtSuggestedCaloriesIntake;
+    TextView txtSuggSteps;
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
     private static final DecimalFormat rf = new DecimalFormat("0,000");
@@ -98,6 +99,9 @@ public class HomeActivity extends AppCompatActivity {
 
         //Call Method to calculate suggested Calories Intake
         BMRCalculation(age, height, weight, gender, activity);
+
+        //Call Method to calculate and display target steps per day
+        targetSteps (activity);
 
 
     }
@@ -248,5 +252,33 @@ public class HomeActivity extends AppCompatActivity {
         txtSuggestedCaloriesIntake.setText(rf.format(suggCalIntakeFinal));
     }
 
+    //Method to calculate Target Steps based on activity registered
+    public void targetSteps (String activity) {
+        double weightLostWeekly = 0.0;
+        int burnedCalLose1KG = 7700;
+        double burnedCalPerStep = 0.04;
+        double burnedCalPerWeek;
+        double targetStepsPerWeek;
+        double targetStepsPerDay;
+
+        switch (activity) {
+            case "L":
+                weightLostWeekly = 0.2;
+                break;
+            case "M":
+                weightLostWeekly = 0.3;
+                break;
+            case "A":
+                weightLostWeekly = 0.5;
+                break;
+        }
+        burnedCalPerWeek = (burnedCalLose1KG*weightLostWeekly) /1;
+        targetStepsPerWeek = (1*burnedCalPerWeek)/burnedCalPerStep;
+        targetStepsPerDay = targetStepsPerWeek/7;
+
+        txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
+        txtSuggSteps.setText(rf.format(targetStepsPerDay));
+
+    }
 
 }

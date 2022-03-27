@@ -203,7 +203,6 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="1,000"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/txtSlash"
