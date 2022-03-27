@@ -14,14 +14,16 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="28dp"
         android:background="#FFFCF4"
-        android:contentDescription="@string/backBtnReadableLabel"
+        android:contentDescription="@string/backBtn"
+        android:labelFor="@id/txtLogin"
         android:minWidth="48dp"
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.509"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="RedundantDescriptionCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/txtLogin"
@@ -29,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/txtLogIn"
-        android:textSize="25dp"
+        android:textColor="#A1887F"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +99,57 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtforgetPwd" />
+        app:layout_constraintTop_toBottomOf="@+id/txtforgetPwd"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <ImageView
+        android:id="@+id/imageViewOr"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/imgContentDesc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
+        app:srcCompat="@drawable/or"
+        tools:ignore="ImageContrastCheck,RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/buttonGoogle"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:background="#DB4437"
+        android:backgroundTintMode="add"
+        android:contentDescription="@string/googleBtnContentDesc"
+        android:text="@string/googleText"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewOr"
+        tools:ignore="TextContrastCheck,RedundantDescriptionCheck" />
+
+    <Button
+        android:id="@+id/buttonFacebook"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:background="#4267B2"
+        android:backgroundTintMode="add"
+        android:contentDescription="@string/btnFBDescrption"
+        android:text="@string/facebookText"
+        android:textColor="#EDE7F6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGoogle"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/txtforgetPwd"
@@ -107,6 +160,7 @@
         android:fontFamily="@font/roboto"
         android:gravity="center"
         android:text="@string/txtForgetPwd"
+        android:textColor="#8D6E63"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.931"
