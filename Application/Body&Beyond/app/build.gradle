@@ -75,4 +75,9 @@ dependencies {
 
         // optional - Paging 3 Integration
         implementation "androidx.room:room-paging:2.5.0-alpha01"
+
+    //dependencies for navigation drawer
+    implementation 'androidx.navigation:navigation-ui:2.3.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.0'
+    implementation 'com.google.android.material:material:1.2.0'
 }
