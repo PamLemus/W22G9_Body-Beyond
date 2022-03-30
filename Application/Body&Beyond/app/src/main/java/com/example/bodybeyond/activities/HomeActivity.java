@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -33,15 +34,21 @@ public class HomeActivity extends AppCompatActivity {
     TextView BMIResult;
     TextView BMIDescrp;
     ImageView BMIImgResult;
+    TextView txtSuggestedCaloriesIntake;
+    TextView txtSuggSteps;
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
+    private static final DecimalFormat rf = new DecimalFormat("0,000");
 
-
-    String gender;
-    double height = 147;
-    double weight = 45.8;
+    String gender = "F";  //Value limited to "M"(male) or "F"(female)
+    double height = 155;
+    double weight = 40;
     double BMIcalculation;
-    int age = 49;
+    int age = 28;
+    String BMIDescription;
+    String suggestedAction;
+    String activity = "A";  //Value limited to "L"(light) or "M"(moderate) or "A"(active)
+    double suggCalIntakeFinal;
 
 
     @Override
@@ -64,6 +71,9 @@ public class HomeActivity extends AppCompatActivity {
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
         calculate.setOnClickListener((View view) -> {
+            SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
+            sharedPreferences.edit().clear().apply();
+          //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
             startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
 
         });
@@ -91,6 +101,12 @@ public class HomeActivity extends AppCompatActivity {
         //Call Method to establish BMI Description and corresponding image
         BMIDescriptionLogic(age, BMIvalue);
 
+        //Call Method to calculate suggested Calories Intake
+        BMRCalculation(age, height, weight, gender, activity);
+
+        //Call Method to calculate and display target steps per day
+        targetSteps (activity);
+
 
     }
 
@@ -111,8 +127,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //Method to display BMI Description
     public void BMIDescriptionLogic (int age, double BMIvalue) {
-        String BMIDescription = "";
-        String suggestedAction = "";
+
         BMIImgResult = findViewById(R.id.imgBMIresult);
 
         // Results for Adults
@@ -201,5 +216,73 @@ public class HomeActivity extends AppCompatActivity {
         BMIDescrp.setText("You are " + BMIDescription + "\n You need to " + suggestedAction);
     }
 
+    //Method to calculate Basal Metabolic Rate(BMR) base on Mifflin-St Jeor Equation
+    public void BMRCalculation (int age, double height, double weight, String gender, String activity) {
+        double maleBMRFormula = ((10*weight)+(6.25*height)-(5*age)+5);
+        double femaleBMRFormula = ((10*weight)+(6.25*height)-(5*age)-161);
+        double activityFactor = 0.0;
+        double suggCalIntakeMainNum;
+        int calFactorGainLose = 500; //Standard value to gain or lose 0.5kg per week
+
+        switch (activity) {
+            case "L":
+                activityFactor = 1.375;
+                break;
+            case "M":
+                activityFactor = 1.465;
+                break;
+            case "A":
+                activityFactor = 1.55;
+                break;
+        }
+
+        //Basis of calculation is for Maintain Weight
+        if (gender.equals("F")) {
+            suggCalIntakeMainNum = (activityFactor*femaleBMRFormula);
+        } else {
+            suggCalIntakeMainNum = (activityFactor*maleBMRFormula);
+        }
+
+        //Final Suggested Calories Intake based on BMI results
+        if(suggestedAction.startsWith("MAI")) {
+                suggCalIntakeFinal = suggCalIntakeMainNum;
+        } else if (suggestedAction.startsWith("LOS")) {
+                suggCalIntakeFinal = (suggCalIntakeMainNum-calFactorGainLose);
+        } else if (suggestedAction.startsWith("GAI")) {
+            suggCalIntakeFinal = (suggCalIntakeMainNum + calFactorGainLose);
+        }
+
+        txtSuggestedCaloriesIntake = findViewById(R.id.txtSuggCalNum);
+        txtSuggestedCaloriesIntake.setText(rf.format(suggCalIntakeFinal));
+    }
+
+    //Method to calculate Target Steps based on activity registered
+    public void targetSteps (String activity) {
+        double weightLostWeekly = 0.0;
+        int burnedCalLose1KG = 7700;
+        double burnedCalPerStep = 0.04;
+        double burnedCalPerWeek;
+        double targetStepsPerWeek;
+        double targetStepsPerDay;
+
+        switch (activity) {
+            case "L":
+                weightLostWeekly = 0.2;
+                break;
+            case "M":
+                weightLostWeekly = 0.3;
+                break;
+            case "A":
+                weightLostWeekly = 0.5;
+                break;
+        }
+        burnedCalPerWeek = (burnedCalLose1KG*weightLostWeekly) /1;
+        targetStepsPerWeek = (1*burnedCalPerWeek)/burnedCalPerStep;
+        targetStepsPerDay = targetStepsPerWeek/7;
+
+        txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
+        txtSuggSteps.setText(rf.format(targetStepsPerDay));
+
+    }
 
 }

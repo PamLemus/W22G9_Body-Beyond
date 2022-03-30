@@ -55,4 +55,6 @@
     <string name="txtCalBmi">Calculate BMI</string>
     <string name="backBtnReadableLabel">Back Button</string>
     <string name="txtForgotPwd">Forgot Password</string>
+    <string name="txtUserPwd">Password</string>
+    <string name="googleBtnContentDesc">"Google Button "</string>
 </resources>
