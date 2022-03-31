@@ -17,6 +17,7 @@ import com.example.bodybeyond.interfaces.UserDao;
 import com.example.bodybeyond.models.User;
 import com.example.bodybeyond.utilities.Helper;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SignUp extends AppCompatActivity{
@@ -43,7 +44,6 @@ public class SignUp extends AppCompatActivity{
         signUpBtn.setOnClickListener((View view) ->{
                 if(Validation(email.getText().toString()))
                 {
-                    Toast.makeText(SignUp.this, "Inside continue btn", Toast.LENGTH_SHORT).show();
                     if(!(GetUser(email.getText().toString()))) {
                         Bundle bundle = new Bundle();
                         bundle.putString("EMAIL", email.getText().toString());
@@ -75,13 +75,13 @@ public class SignUp extends AppCompatActivity{
         }
     }
 
-    private synchronized boolean GetUser(String email){
+    private boolean GetUser(String email){
         BodyAndBeyondDB db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
                 .allowMainThreadQueries().build();
         UserDao userDao = db.userDao();
         AtomicBoolean flag = new AtomicBoolean(false);
 //        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
+//       executorService.execute(() -> {
         try {
             User user = userDao.getUserInfo(email);
             if(user != null)
