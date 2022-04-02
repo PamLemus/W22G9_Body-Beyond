@@ -33,10 +33,20 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
 
@@ -45,22 +55,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class LoginActivity extends AppCompatActivity  implements GoogleApiClient.OnConnectionFailedListener {
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+
+public class LoginActivity extends AppCompatActivity {
 
     final String FACEBOOK_LOGIN = "FACEBOOK";
     final String GOOGLE_LOGIN = "GOOGLE";
     private Button googleLogIn;
     private Button facebookLogIn;
 
-
-    //Google Login
-    private GoogleApiClient googleApiClient;
-    private static final int SIGN_IN = 1;
-
     //Facebook Login
     private CallbackManager callbackManager;
-
-
 
     final String TAG = "LOGIN_ACTIVITY";
     EditText emailId;
@@ -68,11 +75,13 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
     Button btnLogIn;
     TextView forgetPwd;
     ImageButton backBtn;
-
-
-
     String email;
     String pwd;
+    String fb_email;
+
+    GoogleSignInClient mGoogleSignInClient;
+    static final int RC_SIGN_IN = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,27 +91,20 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
         btnLogIn = findViewById(R.id.btnLogIn);
         backBtn = findViewById(R.id.imgLoginBackBtn);
         forgetPwd = findViewById(R.id.txtforgetPwd);
-        forgetPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    if(new Helper().emailValidator(emailId.getText().toString()))
-                    {
-                        Bundle bundle = new Bundle();
-                        bundle.putString("EMAIL", emailId.getText().toString());
-                        Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                    }
-                    else {
-                        Toast.makeText(LoginActivity.this, "Please enter valid Email address.", Toast.LENGTH_SHORT).show();
-                    }
+        forgetPwd.setOnClickListener((View view) -> {
+            try {
+                if (new Helper().emailValidator(emailId.getText().toString())) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("EMAIL", emailId.getText().toString());
+                    Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please enter valid Email address.", Toast.LENGTH_SHORT).show();
+                }
 
-                }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
-                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,24 +118,16 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
                 email = emailId.getText().toString();
                 pwd = password.getText().toString();
                 boolean isValid = Validation(email, pwd);
-                if(isValid)
-                {
+                if (isValid) {
                     boolean response = GetUserInfo(email, pwd);
-                    if(response)
-                    {
-                        SharedPreferences sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
-                        SharedPreferences.Editor edit = sharedPreferences.edit();
-                        edit.putString("EMAIL", email);
-                        edit.commit();
+                    if (response) {
+                        UserEmailPref(emailId.getText().toString());
                         startActivity(new Intent(this, HomeActivity.class));
-                    }
-                    else {
+                    } else {
                         Toast.makeText(this, "No record exist. !!", Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -153,43 +147,73 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
 //        9.Add permission to use internet in manifest file.
 
         googleLogIn = findViewById(R.id.buttonGoogle);
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, googleSignInOptions).build();
-
-        //Google login logic
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         googleLogIn.setOnClickListener((View view) -> {
-            Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-            SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putBoolean("VISIBILITY", true);
-            edit.putString("SOCIAL_LOGIN", GOOGLE_LOGIN);
-            edit.commit();
-            startActivityForResult(intent, SIGN_IN);
-
+            switch (view.getId()) {
+                case R.id.buttonGoogle:
+                    signIn();
+                    break;
+            }
         });
 
-//        Steps to impliment Facebook login"
+//        Steps to implement Facebook login"
 //        1.Goto Facebook developer page and click on add new App.
 //        2.After App creation. Click on doc and select facebook login
 //        3.Select Android and select the newly created app.
 //        4.Follow the instruction as follow
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
         facebookLogIn = findViewById(R.id.buttonFacebook);
         callbackManager = CallbackManager.Factory.create();
 
-
-        //Facebook login logic
         facebookLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email","public_profile"));
+                LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email, user_gender, public_profile"));
                 LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
-                        startActivity(new Intent(LoginActivity.this, CalculateBMIActivity.class));
+                        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(@Nullable JSONObject jsonObject, @Nullable GraphResponse graphResponse) {
+                                try {
+                                    String firstName = jsonObject.optString("first_name");
+                                    String lastName = jsonObject.optString("last_name");
+                                    String email = jsonObject.optString("email");
+                                    String gender = jsonObject.optString("gender");
+                                    fb_email = email;
+                                    if (!GetUser(email)) {
+                                        SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE);
+                                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                                        edit.putBoolean("VISIBILITY", true);
+                                        edit.putString("SOCIAL_LOGIN", FACEBOOK_LOGIN);
+                                        edit.putString("NAME", firstName + " " + lastName);
+                                        edit.putString("EMAIL", email);
+                                        edit.putString("GENDER", gender);
+                                        edit.commit();
+                                        // UserEmailPref(email);
+                                        Log.d("FACEBOOK..", jsonObject.toString());
+                                        Toast.makeText(LoginActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                                        RequestOptions requestOptions = new RequestOptions();
+                                        requestOptions.dontAnimate();
+                                        startActivity(new Intent(LoginActivity.this, CalculateBMIActivity.class));
+                                    } else {
+                                        UserEmailPref(email);
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                    }
+
+                                } catch (Exception ex) {
+                                    ex.printStackTrace();
+                                }
+                            }
+                        });
+
+                        Bundle parameters = new Bundle();
+                        parameters.putString("fields", "gender,first_name,last_name,email,id");
+                        request.setParameters(parameters);
+                        request.executeAsync();
                     }
 
                     @Override
@@ -208,20 +232,28 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
 
     }
 
+    private void UserEmailPref(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("EMAIL", email);
+        edit.commit();
+    }
+
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
     private boolean Validation(String email, String pwd) {
-        if(email.isEmpty() || !(new Helper().emailValidator(emailId.getText().toString())))
-        {
+        if (email.isEmpty() || !(new Helper().emailValidator(emailId.getText().toString()))) {
             Toast.makeText(this, "Please enter valid Email address.", Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Empty email id field.");
             return false;
-        }
-        else if(pwd.isEmpty() && pwd.length() < 8 && !(new Helper().isValidPassword(pwd)))
-        {
+        } else if (pwd.isEmpty() && pwd.length() < 8 && !(new Helper().isValidPassword(pwd))) {
             Toast.makeText(this, "Please enter valid Password.", Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Empty password field.");
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -231,81 +263,69 @@ public class LoginActivity extends AppCompatActivity  implements GoogleApiClient
                 .allowMainThreadQueries().build();
         UserDao userDao = db.userDao();
         AtomicBoolean flag = new AtomicBoolean(false);
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
-            try {
-                User user = userDao.authenticateUser(email, password);
-                if(user != null)
-                {
-                    flag.set(true);
-                }
-            } catch (Exception ex) {
-                Log.d("Db", ex.getMessage());
+        try {
+            User user = userDao.authenticateUser(email, password);
+            if (user != null) {
+                flag.set(true);
             }
-//        });
+        } catch (Exception ex) {
+            Log.d("Db", ex.getMessage());
+        }
         return flag.get();
     }
-
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) { }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                startActivity(new Intent(this, CalculateBMIActivity.class));
-                finish();
-            } else {
-                Toast.makeText(this, "Login has failed", Toast.LENGTH_SHORT).show();
-            }
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         }
-
     }
 
-    AccessTokenTracker tokenTracker = new AccessTokenTracker() {
-        @Override
-        protected void onCurrentAccessTokenChanged(@Nullable AccessToken accessToken, @Nullable AccessToken accessToken1) {
-            if(accessToken != null)
-            {
-                loadUserProfile(accessToken);
-            }
-        }
-    };
 
-    private void loadUserProfile(AccessToken accessToken)
-    {
-        GraphRequest request = GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
-            @Override
-            public void onCompleted(@Nullable JSONObject jsonObject, @Nullable GraphResponse graphResponse) {
-                try{
-                    String firstName = jsonObject.optString("first_name");
-                    String lastName = jsonObject.optString("last_name");
-                    String email = jsonObject.optString("email");
-                    SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            if (account != null) {
+                if (!GetUser(account.getEmail())) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE);
                     SharedPreferences.Editor edit = sharedPreferences.edit();
                     edit.putBoolean("VISIBILITY", true);
-                    edit.putString("SOCIAL_LOGIN", FACEBOOK_LOGIN);
-                    edit.putString("NAME", firstName + " " + lastName);
-                    edit.putString("EMAIL", email);
+                    edit.putString("SOCIAL_LOGIN", GOOGLE_LOGIN);
+                    edit.putString("NAME", account.getDisplayName());
+                    edit.putString("EMAIL", account.getEmail());
                     edit.commit();
-                    Log.d("FACEBOOK..", ""+ email);
-                    RequestOptions requestOptions = new RequestOptions();
-                    requestOptions.dontAnimate();
+                    //   UserEmailPref(account.getEmail());
+                    startActivity(new Intent(this, CalculateBMIActivity.class));
+                } else {
+                    UserEmailPref(account.getEmail());
+                    startActivity(new Intent(this, HomeActivity.class));
                 }
-                catch (Exception ex)
-                {
-                    ex.printStackTrace();
-                }
+                Toast.makeText(this, "Sign in successful. !!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(LoginActivity.this, "Sign in not successful!!", Toast.LENGTH_SHORT).show();
             }
-        });
+        } catch (ApiException e) {
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+        }
+    }
 
-        Bundle parameters = new Bundle();
-        parameters.putString("fields","first_name,last_name,email,id");
-        request.setParameters(parameters);
-        request.executeAsync();
+    private boolean GetUser(String email) {
+        BodyAndBeyondDB db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
+                .allowMainThreadQueries().build();
+        UserDao userDao = db.userDao();
+        AtomicBoolean flag = new AtomicBoolean(false);
+        try {
+            User user = userDao.getUserInfo(email);
+            Toast.makeText(this, user.getUserWeight() + " " + user.getUserHeight(), Toast.LENGTH_SHORT).show();
+            if (user != null) {
+                flag.set(true);
+            }
+        } catch (Exception ex) {
+            Log.d("Db", ex.getMessage());
+        }
+        return flag.get();
     }
 }

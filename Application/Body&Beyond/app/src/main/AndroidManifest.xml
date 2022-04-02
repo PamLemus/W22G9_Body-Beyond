@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BodyBeyond">
         <activity
-            android:name=".activities.Navigation"
-            android:exported="false" />
-        <activity
             android:name=".activities.DietActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -24,6 +21,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.SignUpDetails"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activities.ForgotPasswordActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -45,8 +46,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activities.HomeActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="false"/>
+<!--            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
         <activity
             android:name=".activities.MainActivity"
             android:exported="true"
@@ -75,10 +76,8 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>

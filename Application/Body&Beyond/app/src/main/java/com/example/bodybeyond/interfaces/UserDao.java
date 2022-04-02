@@ -19,7 +19,7 @@ public interface UserDao {
     @Query("UPDATE users SET password = :password WHERE userEmail = :email")
     int updateUserPassword(String email, String password);
 
-    @Query("UPDATE users SET userHeight = :height AND userWeight = :weight WHERE userEmail = :email")
+    @Query("UPDATE users SET userHeight = :height, userWeight = :weight WHERE userEmail = :email")
     int updateUserInfo(double height, double weight, String email);
 
     @Query("SELECT * FROM users WHERE userEmail = :email")

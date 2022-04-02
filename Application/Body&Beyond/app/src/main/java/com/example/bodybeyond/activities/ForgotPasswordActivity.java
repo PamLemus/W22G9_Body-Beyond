@@ -77,6 +77,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
 
     private boolean Validation(String newPassword, String confirmPassword) {
+        // 8 characters at least 1 Alphabet, 1 Number and 1 Special Character
         if(newPassword.isEmpty() || confirmPassword.isEmpty())
         {
             Toast.makeText(ForgotPasswordActivity.this, "Password field is empty.", Toast.LENGTH_SHORT).show();
@@ -111,8 +112,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private boolean UpdatePassword(String email, String password, UserDao userDao)
     {
         AtomicBoolean flag = new AtomicBoolean(false);
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
             try {
               int response =  userDao.updateUserPassword(email, password);
               if(response == 1)
@@ -122,9 +121,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             } catch (Exception ex) {
                 Log.d("Db", ex.getMessage());
             }
-
-//        });
-
         return flag.get();
     }
 }
