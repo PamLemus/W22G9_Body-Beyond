@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button home = findViewById(R.id.btnHome);
         home.setOnClickListener((View view) -> {
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                startActivity(new Intent(MainActivity.this, DietActivity.class));
 
         });
 

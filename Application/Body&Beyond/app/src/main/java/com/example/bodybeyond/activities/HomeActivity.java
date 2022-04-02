@@ -324,37 +324,24 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case  R.id.navProfile:
-
-                      //  Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                     //   startActivity(intent);
-                     //   break;
-
-
-
-                    case  R.id.navContactUs:
-
-                        // Intent browserIntent  = new Intent(Intent.ACTION_VIEW , Uri.parse(""));
-                        //   startActivity(browserIntent);
-                        //  Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
-                        //   startActivity(intent);
-
-
-                          break;
-
-                    case  R.id.navAboutUs:
-                        //  Intent intent = new Intent(HomeActivity.this, AboutUsActivity.class);
-                        //   startActivity(intent);
-
-
+                        Intent profileIntent = new Intent(HomeActivity.this, ProfileActivity.class);
+                        startActivity(profileIntent);
                         break;
-                    case  R.id.navLogout:{
-
-                        SharedPreferences preferences =getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                    case  R.id.navContactUs:
+                           Intent contactIntent = new Intent(HomeActivity.this, ContactActivity.class);
+                           startActivity(contactIntent);
+                          break;
+                    case  R.id.navAboutUs:
+                          Intent aboutIntent = new Intent(HomeActivity.this, AboutUsActivity.class);
+                           startActivity(aboutIntent);
+                        break;
+                    case  R.id.navLogout:
+                        SharedPreferences preferences =getSharedPreferences("USER_EMAIL", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.clear();
                         editor.apply();
                         finish();
-                    }
+                        startActivity(new Intent(this, LoginActivity.class));
                     break;
                 }
 

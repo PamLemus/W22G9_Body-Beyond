@@ -354,7 +354,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
 
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             app:menu="@menu/drawer_menu"></com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 
@@ -362,13 +362,15 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitleTextColor="#090808"
+        app:titleTextColor="@color/black" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
