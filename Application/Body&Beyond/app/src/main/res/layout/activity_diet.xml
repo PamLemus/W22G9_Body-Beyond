@@ -15,7 +15,8 @@
         android:backgroundTint="@color/light_yellow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
+        app:srcCompat="@drawable/back"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/TextViewDietTitle"
@@ -31,7 +32,7 @@
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
@@ -41,21 +42,56 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/mondayBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btnbg"
+                android:padding="10dp"
                 android:text="Monday" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/tuesdayBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:background="@drawable/btnbg"
+                android:padding="10dp"
+                android:text="Tuesday" />
+
+            <Button
+                android:id="@+id/wednesdayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnbg"
+                android:padding="10dp"
+                android:text="Wednesday" />
+
+            <Button
+                android:id="@+id/thursdayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnbg"
+                android:padding="10dp"
+                android:text="Thursday" />
+
+            <Button
+                android:id="@+id/fridayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/btnbg"
+                android:padding="10dp"
+                android:text="Friday" />
         </LinearLayout>
     </HorizontalScrollView>
 

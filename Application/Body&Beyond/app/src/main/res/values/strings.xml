@@ -59,4 +59,5 @@
     <string name="googleBtnContentDesc">"Google Button "</string>
     <string name="userNameText">User Name</string>
     <string name="EmailText">User Email</string>
+    <string name="app_name_dummy"></string>
 </resources>

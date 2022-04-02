@@ -1,33 +1,33 @@
 ﻿Light ,Cardio,"3 exercises: 
 Burpees - 15 rep
 Jumping Jacks - 15 rep
-Mountain climbers - 15 rep"
+Mountain climbers - 15 rep",cardio_light
 Light ,Yoga,"3 exercises: 
 Child's pose - 30 sec
 Downward-Facing Dog - 30 sec
-Plank pose - 30 sec"
+Plank pose - 30 sec",yoga_light
 Light ,Weight training,"3 exercises: 
 Dumbbell chest fly - 15 rep
 Single-leg squat - 15 rep
-Dumbbell overhead triceps extension - 15 rep"
+Dumbbell overhead triceps extension - 15 rep",weight_light
 Moderate,Cardio,"5 exercises: 
 Burpees - 15 rep
 Jumping Jacks - 15 rep
 Mountain climbers - 15 rep
 Squat jumps - 15 rep
-Inchworms - 15 rep"
+Inchworms - 15 rep",cardio_moderate
 Moderate,Yoga,"5 exercises: 
 Child's pose - 30 sec
 Downward-Facing Dog - 30 sec
 Plank pose - 30 sec
 Cobra pose - 30 sec
-Tree pose - 30 sec"
+Tree pose - 30 sec",yoga_moderate
 Moderate,Weight training,"5 exercises: 
 Dumbbell chest fly - 15 rep
 Single-leg squat - 15 rep
 Dumbbell overhead triceps extension - 15 rep
 Push-ups - 15 rep
-Dips - 15 rep"
+Dips - 15 rep",weight_moderate
 Active,Cardio,"7 exercises: 
 Burpees - 15 rep
 Jumping Jacks - 15 rep
@@ -35,7 +35,7 @@ Mountain climbers - 15 rep
 Squat jumps - 15 rep
 Inchworms - 15 rep
 Lateral Shuffles - 15 rep
-Lunges - 15 rep"
+Lunges - 15 rep",cardio_active
 Active,Yoga,"7 exercises: 
 Child's pose - 30 sec
 Downward-Facing Dog - 30 sec
@@ -43,7 +43,7 @@ Plank pose - 30 sec
 Cobra pose - 30 sec
 Tree pose - 30 sec
 Triangle pose - 30 sec
-Seated Half-Spinal Twist Pose - 30 sec"
+Seated Half-Spinal Twist Pose - 30 sec",yoga_active
 Active,Weight training,"7 exercises: 
 Dumbbell chest fly - 15 rep
 Single-leg squat - 15 rep
@@ -51,4 +51,4 @@ Dumbbell overhead triceps extension - 15 rep
 Push-ups - 15 rep
 Dips - 15 rep
 Deadlift - 15 rep
-Leg press - 15 rep"
+Leg press - 15 rep",weight_active

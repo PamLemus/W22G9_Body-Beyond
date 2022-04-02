@@ -7,335 +7,372 @@
     android:background="@color/light_yellow"
     tools:context=".activities.HomeActivity">
 
-    <ScrollView
-        android:id="@+id/scrollViewHome"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:background="#F7FFFFFF"
+        android:fitsSystemWindows="true"
+        android:minWidth="19dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fillViewport="true"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/light_yellow">
+        <ScrollView
+            android:id="@+id/scrollViewHome"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayoutBMIResult"
-                android:layout_width="350dp"
-                android:layout_height="230dp"
-                android:layout_marginTop="12dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/light_yellow">
 
-                <ImageView
-                    android:id="@+id/imgBMIresult"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
-                    android:layout_marginStart="6dp"
-                    android:contentDescription="@string/yourBMI"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/bmi" />
-
-                <TextView
-                    android:id="@+id/txtBMI"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="48dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/yourBMI"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/imgBMIresult"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtBMIResult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="48dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtBMI"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/line"
-                    android:layout_width="330dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/font_secondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBMI" />
-
-                <TextView
-                    android:id="@+id/txtBMIResultDescr"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
-                    android:textAlignment="center"
-                    android:textColor="#757575"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/line" />
-
-                <Button
-                    android:id="@+id/btnCalculateAgain"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayoutBMIResult"
+                    android:layout_width="350dp"
+                    android:layout_height="230dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="24dp"
-                    android:background="@color/yellow"
-                    android:minHeight="48dp"
-                    android:text="@string/calculate"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBMIResultDescr" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ConstraintLayoutCalories"
-                android:layout_width="355dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="32dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBMIResult">
-
-                <TextView
-                    android:id="@+id/txtSuggestedCalories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/suggestedCal"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/txtSlash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@string/slash"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtCurrentSteps"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtSuggCalNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtSuggestedCalories"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/line2"
-                    android:layout_width="330dp"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/font_secondary"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtSuggestedCalories" />
-
-                <TextView
-                    android:id="@+id/txtSteps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/steps"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtCurrentSteps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="650"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtSteps"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtSuggStepsNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtSlash"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtBurnedDescr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/burned"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtSuggStepsNum"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtBurnedCalSteps"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="0"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtBurnedDescr"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtCal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/cal"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtBurnedCalSteps"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <TextView
-                    android:id="@+id/txtStepsProgressPercentage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="0%"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/txtCal"
-                    app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-                <ProgressBar
-                    android:id="@+id/progressBarSteps"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_marginEnd="12dp"
-                    android:progressDrawable="@drawable/custom_progress"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBurnedDescr" />
-
-                <TextView
-                    android:id="@+id/txtSuggeDietExerc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="@string/dietExer"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/progressBarSteps" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/ConstraintLayoutTabsDE"
-                android:layout_width="350dp"
-                android:layout_height="1000dp"
-                android:layout_marginTop="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutCalories">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.tabs.TabItem
-                        android:id="@+id/TabItemDiets"
+                    <ImageView
+                        android:id="@+id/imgBMIresult"
+                        android:layout_width="170dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="6dp"
+                        android:contentDescription="@string/yourBMI"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/bmi" />
+
+                    <TextView
+                        android:id="@+id/txtBMI"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="48dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/yourBMI"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/imgBMIresult"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtBMIResult"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Diets" />
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="48dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtBMI"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.google.android.material.tabs.TabItem
-                        android:id="@+id/TabItemExercise"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/line"
+                        android:layout_width="330dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/font_secondary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtBMI" />
+
+                    <TextView
+                        android:id="@+id/txtBMIResultDescr"
+                        android:layout_width="300dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:textAlignment="center"
+                        android:textColor="#757575"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/line" />
+
+                    <Button
+                        android:id="@+id/btnCalculateAgain"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Exercise" />
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="24dp"
+                        android:background="@color/yellow"
+                        android:minHeight="48dp"
+                        android:text="@string/calculate"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtBMIResultDescr" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                </com.google.android.material.tabs.TabLayout>
-
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintLayoutCalories"
+                    android:layout_width="355dp"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayoutBMIResult">
+
+                    <TextView
+                        android:id="@+id/txtSuggestedCalories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/suggestedCal"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtSlash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/slash"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtCurrentSteps"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtSuggCalNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txtSuggestedCalories"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/line2"
+                        android:layout_width="330dp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/font_secondary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtSuggestedCalories" />
+
+                    <TextView
+                        android:id="@+id/txtSteps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/steps"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtCurrentSteps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="650"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtSteps"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtSuggStepsNum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtSlash"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtBurnedDescr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/burned"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtSuggStepsNum"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtBurnedCalSteps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="0"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtBurnedDescr"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtCal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/cal"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtBurnedCalSteps"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <TextView
+                        android:id="@+id/txtStepsProgressPercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="24dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="0%"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toEndOf="@+id/txtCal"
+                        app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarSteps"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginEnd="12dp"
+                        android:progressDrawable="@drawable/custom_progress"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtBurnedDescr" />
+
+                    <TextView
+                        android:id="@+id/txtSuggeDietExerc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="@string/dietExer"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/progressBarSteps" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/ConstraintLayoutTabsDE"
+                    android:layout_width="350dp"
+                    android:layout_height="1000dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ConstraintLayoutCalories">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/TabItemDiets"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Diets" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/TabItemExercise"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Exercise" />
+
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+
+            android:layout_marginTop="50dp"
+            app:menu="@menu/drawer_menu"></com.google.android.material.navigation.NavigationView>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 

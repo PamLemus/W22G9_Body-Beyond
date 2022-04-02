@@ -1,28 +1,34 @@
 package com.example.bodybeyond.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.adapters.ViewPagerDietExerciseAdapter;
 import com.example.bodybeyond.fragments.DietFragment;
 import com.example.bodybeyond.fragments.ExerciseFragment;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
@@ -37,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     TextView txtSuggestedCaloriesIntake;
     TextView txtSuggSteps;
 
+
+
     private static final DecimalFormat df = new DecimalFormat("0.0");
     private static final DecimalFormat rf = new DecimalFormat("0,000");
 
@@ -50,28 +58,50 @@ public class HomeActivity extends AppCompatActivity {
     String activity = "A";  //Value limited to "L"(light) or "M"(moderate) or "A"(active)
     double suggCalIntakeFinal;
 
+    //Navigation drawer
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
+
+
+    TextView email;
+    String useremail;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ActionBar actBar = getSupportActionBar();
-        actBar.setDisplayShowHomeEnabled(true);
-        actBar.setDisplayUseLogoEnabled(true);
-        actBar.setLogo(R.drawable.hamburger);
-        actBar.setTitle("  Welcome, Jasmine"); //Read the name from DB
-        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FFFCF4"));
-        actBar.setBackgroundDrawable(colorDrawable);
+        SharedPreferences  sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
+         username =  sharedPreferences.getString("UserName" ,"null");
+         useremail = sharedPreferences.getString("EMAIL","null");
+        //TextView  name = findViewById(R.id.navUserName);
+
+//navigation drawer code
+        NavDrawer();
+        SetUpToolbar();
+
+
+      // name.setText(username);
+      //  Log.d("UserData",username+"" +
+        //        " "+useremail);
+//        ActionBar actBar = getSupportActionBar();
+//        actBar.setDisplayShowHomeEnabled(true);
+//        actBar.setDisplayUseLogoEnabled(true);
+//        actBar.setLogo(R.drawable.hamburger);
+//        actBar.setTitle("  Welcome, Jasmine"); //Read the name from DB
+//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FFFCF4"));
+//        actBar.setBackgroundDrawable(colorDrawable);
 
         //Changing Text Color of the Action Bar
         int black = Color.BLACK;
-        setActionbarTextColor(actBar, black);
+        //setActionbarTextColor(actBar, black);
 
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
         calculate.setOnClickListener((View view) -> {
-            SharedPreferences sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
+            //sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
             sharedPreferences.edit().clear().apply();
           //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
             startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
@@ -283,6 +313,64 @@ public class HomeActivity extends AppCompatActivity {
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
         txtSuggSteps.setText(rf.format(targetStepsPerDay));
 
+
     }
 
+    private void NavDrawer() {
+        navigationView = (NavigationView) findViewById(R.id.navigation_menu);
+
+        navigationView.setNavigationItemSelectedListener((@NonNull MenuItem menuItem) -> {
+
+                switch (menuItem.getItemId())
+                {
+                    case  R.id.navProfile:
+
+                      //  Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                     //   startActivity(intent);
+                     //   break;
+
+
+
+                    case  R.id.navContactUs:
+
+                        // Intent browserIntent  = new Intent(Intent.ACTION_VIEW , Uri.parse(""));
+                        //   startActivity(browserIntent);
+                        //  Intent intent = new Intent(HomeActivity.this, ContactActivity.class);
+                        //   startActivity(intent);
+
+
+                          break;
+
+                    case  R.id.navAboutUs:
+                        //  Intent intent = new Intent(HomeActivity.this, AboutUsActivity.class);
+                        //   startActivity(intent);
+
+
+                        break;
+                    case  R.id.navLogout:{
+
+                        SharedPreferences preferences =getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.clear();
+                        editor.apply();
+                        finish();
+                    }
+                    break;
+                }
+
+                return false;
+            }
+
+        );
+    }
+
+    public void SetUpToolbar() {
+        drawerLayout = findViewById(R.id.drawerLayout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Welcome,Jasmine");
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.app_name_dummy,R.string.app_name_dummy);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+    }
 }

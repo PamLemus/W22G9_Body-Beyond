@@ -11,7 +11,7 @@ Lunch
 P.M. Snack 
 * 1 small plum
 Dinner 
-* 1 serving falafel salad with lemon-tahini dressing"
+* 1 serving falafel salad with lemon-tahini dressing",vegan_range1_mon
 Vegan,Range 1,Tuesday,Vegan Meal plan,"Breakfast
 * 1 serving Peanut butter & Chia Berry Jam English Muffin
 A.M. Snack 
@@ -19,7 +19,7 @@ A.M. Snack
 Lunch 
 * 4 cups White Bean & veggie Salad 
 Dinner
-* 2 cups black-bean Quinoa Buddha Bowl"
+* 2 cups black-bean Quinoa Buddha Bowl",vegan_range1_tues
 Vegan,Range 1,Wednesday,Vegan Meal plan,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -31,7 +31,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range1_wed
 Vegan,Range 1,Thursday,Vegan Meal plan,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -43,7 +43,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range1_thurs
 Vegan,Range 1,Friday,Vegan Meal plan,"Breakfast 
 * 2 Vegan Pancakes
 * 1/4 cup blackberries
@@ -54,7 +54,7 @@ P.M. Snack
 * 1/2 cup edamame pods, seasoned with a pinch of salt
 Dinner
 * 1 cup Chickpea Curry
-* 1 cup Basic Quinoa"
+* 1 cup Basic Quinoa",vegan_range1_fri
 Vegan,Range 2,Monday,Vegan Diet plan,"Breakfast
 * 2 vegan pancakes
 * 1/4 cup blackberries
@@ -68,7 +68,7 @@ Lunch
 P.M. Snack 
 * 1 small plum
 Dinner 
-* 1 serving falafel salad with lemon-tahini dressing"
+* 1 serving falafel salad with lemon-tahini dressing",vegan_range2_mon
 Vegan,Range 2,Tuesday,Vegan Diet plan,"Breakfast
 * 1 serving Peanut butter & Chia Berry Jam English Muffin
 A.M. Snack 
@@ -76,7 +76,7 @@ A.M. Snack
 Lunch 
 * 4 cups White Bean & veggie Salad 
 Dinner
-* 2 cups black-bean Quinoa Buddha Bowl"
+* 2 cups black-bean Quinoa Buddha Bowl",vegan_range2_tues
 Vegan,Range 2,Wednesday,Vegan Diet plan,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -88,7 +88,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range2_wed
 Vegan,Range 2,Thursday,Vegan Diet plan,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -100,7 +100,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range2_thurs
 Vegan,Range 2,Friday,Vegan Diet plan,"Breakfast 
 * 2 Vegan Pancakes
 * 1/4 cup blackberries
@@ -111,7 +111,7 @@ P.M. Snack
 * 1/2 cup edamame pods, seasoned with a pinch of salt
 Dinner
 * 1 cup Chickpea Curry
-* 1 cup Basic Quinoa"
+* 1 cup Basic Quinoa",vegan_range2_fri
 Vegan,Range 3,Monday,Vegan Sample menu,"Breakfast
 * 2 vegan pancakes
 * 1/4 cup blackberries
@@ -125,7 +125,7 @@ Lunch
 P.M. Snack 
 * 1 small plum
 Dinner 
-* 1 serving falafel salad with lemon-tahini dressing"
+* 1 serving falafel salad with lemon-tahini dressing",vegan_range3_mon
 Vegan,Range 3,Tuesday,Vegan Sample menu,"Breakfast
 * 1 serving Peanut butter & Chia Berry Jam English Muffin
 A.M. Snack 
@@ -133,7 +133,7 @@ A.M. Snack
 Lunch 
 * 4 cups White Bean & veggie Salad 
 Dinner
-* 2 cups black-bean Quinoa Buddha Bowl"
+* 2 cups black-bean Quinoa Buddha Bowl",vegan_range3_tues
 Vegan,Range 3,Wednesday,Vegan Sample menu,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -145,7 +145,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range3_wed
 Vegan,Range 3,Thursday,Vegan Sample menu,"Breakfast 
 * 1 serving peanut butter banana toast
 A.M. Snack 
@@ -157,7 +157,7 @@ P.M. Snack
 Dinner 
 * 1 1/2 cups Roasted Cauliflower & Potato Curry Soup
 * 1/2 small whole-wheat pita, toasted
-* 1/3 cup hummus"
+* 1/3 cup hummus",vegan_range3_thurs
 Vegan,Range 3,Friday,Vegan Sample Menu,"Breakfast 
 * 2 Vegan Pancakes
 * 1/4 cup blackberries
@@ -168,7 +168,7 @@ P.M. Snack
 * 1/2 cup edamame pods, seasoned with a pinch of salt
 Dinner
 * 1 cup Chickpea Curry
-* 1 cup Basic Quinoa"
+* 1 cup Basic Quinoa",vegan_range3_fri
 Combination,Range 1,Monday,Dash Diet,"Breakfast
 * 1 serving Avocado egg Toast
 A.M. Snack
@@ -180,7 +180,7 @@ P.M. Snack
 Dinner
 * 1 serving Seared Salmon with green Peppercorn Sauce
 * 1 cup steamed green beans
-* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper."
+* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper.",combination_range1_mon
 Combination,Range 1,Tuesday,Dash Diet,"Breakfast 
 * 1 cup bran cereal
 * 1 cup skim milk
@@ -192,7 +192,7 @@ Lunch
 P.M. Snack 
 * 1medium orange
 Dinner
-* 1 serving Charred Shrimp & Pesto Buddha Bowl"
+* 1 serving Charred Shrimp & Pesto Buddha Bowl",combination_range1_tues
 Combination,Range 1,Wednesday,Dash Diet,"Breakfast 
 * 1 cup nonfat plain Greek yogurt
 * 3/4 cup blueberries
@@ -206,7 +206,7 @@ P.M. Snack
 * 1 medium orange
 Dinner 
 * 1 serving Curried Sweet Potato and Peanut soup
-* 1 slice whole-wheat bread, toasted"
+* 1 slice whole-wheat bread, toasted",combination_range1_wed
 Combination,Range 1,Thursday,Dash Diet,"Breakfast 
 * 3/4 cup bran cereal
 * 3/4 cup skim milk
@@ -220,7 +220,7 @@ P.M. Snack (62 calories)
 Dinner (427 calories)
 * 1 serving  Cod with Tomato Cream Sauce
 * 3/4 cup cooked brown rice
-* 1 cup steamed broccoli"
+* 1 cup steamed broccoli",combination_range1_thurs
 Combination,Range 1,Friday,Dash Diet,"Breakfast 
 * 1/2 cup rolled oats, cooked in 1 cup milk
 * 1 cup raspberries
@@ -233,7 +233,7 @@ Lunch (374 calories)
 P.M. Snack (84 calories)
 * 1 cup blueberries
 Dinner (304 calories)
-* 1 1/4 cups Chicken Cauliflower Fried “Rice”"
+* 1 1/4 cups Chicken Cauliflower Fried “Rice”",combination_range1_fri
 Combination,Range 2,Monday, Weight watchers Diet ,"Breakfast
 * 1 serving Avocado egg Toast
 A.M. Snack
@@ -245,7 +245,7 @@ P.M. Snack
 Dinner
 * 1 serving Seared Salmon with green Peppercorn Sauce
 * 1 cup steamed green beans
-* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper."
+* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper.",combination_range2_mon
 Combination,Range 2,Tuesday, Weight watchers Diet ,"Breakfast 
 * 1 cup bran cereal
 * 1 cup skim milk
@@ -257,7 +257,7 @@ Lunch
 P.M. Snack 
 * 1medium orange
 Dinner
-* 1 serving Charred Shrimp & Pesto Buddha Bowl"
+* 1 serving Charred Shrimp & Pesto Buddha Bowl",combination_range2_tues
 Combination,Range 2,Wednesday, Weight watchers Diet ,"Breakfast 
 * 1 cup nonfat plain Greek yogurt
 * 3/4 cup blueberries
@@ -271,7 +271,7 @@ P.M. Snack
 * 1 medium orange
 Dinner 
 * 1 serving Curried Sweet Potato and Peanut soup
-* 1 slice whole-wheat bread, toasted"
+* 1 slice whole-wheat bread, toasted",combination_range2_wed
 Combination,Range 2,Thursday, Weight watchers Diet ,"Breakfast 
 * 3/4 cup bran cereal
 * 3/4 cup skim milk
@@ -285,7 +285,7 @@ P.M. Snack (62 calories)
 Dinner (427 calories)
 * 1 serving  Cod with Tomato Cream Sauce
 * 3/4 cup cooked brown rice
-* 1 cup steamed broccoli"
+* 1 cup steamed broccoli",combination_range2_thurs
 Combination,Range 2,Friday, Weight watchers Diet ,"Breakfast 
 * 1/2 cup rolled oats, cooked in 1 cup milk
 * 1 cup raspberries
@@ -298,7 +298,7 @@ Lunch (374 calories)
 P.M. Snack (84 calories)
 * 1 cup blueberries
 Dinner (304 calories)
-* 1 1/4 cups Chicken Cauliflower Fried “Rice”"
+* 1 1/4 cups Chicken Cauliflower Fried “Rice”",combination_range2_fri
 Combination,Range 3,Monday,The Volumetrics diet,"Breakfast
 * 1 serving Avocado egg Toast
 A.M. Snack
@@ -310,7 +310,7 @@ P.M. Snack
 Dinner
 * 1 serving Seared Salmon with green Peppercorn Sauce
 * 1 cup steamed green beans
-* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper."
+* 1 baked medium red potato, drizzled with 1 tsp. olive oil, 1 Tbsp. nonfat plain Greek yogurt and a pinch of pepper.",combination_range3_mon
 Combination,Range 3,Tuesday,The Volumetrics diet,"Breakfast 
 * 1 cup bran cereal
 * 1 cup skim milk
@@ -322,7 +322,7 @@ Lunch
 P.M. Snack 
 * 1medium orange
 Dinner
-* 1 serving Charred Shrimp & Pesto Buddha Bowl"
+* 1 serving Charred Shrimp & Pesto Buddha Bowl",combination_range3_tues
 Combination,Range 3,Wednesday,The Volumetrics diet,"Breakfast 
 * 1 cup nonfat plain Greek yogurt
 * 3/4 cup blueberries
@@ -336,7 +336,7 @@ P.M. Snack
 * 1 medium orange
 Dinner 
 * 1 serving Curried Sweet Potato and Peanut soup
-* 1 slice whole-wheat bread, toasted"
+* 1 slice whole-wheat bread, toasted",combination_range3_wed
 Combination,Range 3,Thursday,The Volumetrics diet,"Breakfast 
 * 3/4 cup bran cereal
 * 3/4 cup skim milk
@@ -350,7 +350,7 @@ P.M. Snack (62 calories)
 Dinner (427 calories)
 * 1 serving  Cod with Tomato Cream Sauce
 * 3/4 cup cooked brown rice
-* 1 cup steamed broccoli"
+* 1 cup steamed broccoli",combination_range3_thurs
 Combination,Range 3,Friday,The Volumetrics diet,"Breakfast 
 * 1/2 cup rolled oats, cooked in 1 cup milk
 * 1 cup raspberries
@@ -363,4 +363,4 @@ Lunch (374 calories)
 P.M. Snack (84 calories)
 * 1 cup blueberries
 Dinner (304 calories)
-* 1 1/4 cups Chicken Cauliflower Fried “Rice”"
+* 1 1/4 cups Chicken Cauliflower Fried “Rice”",combination_range3_fri
