@@ -156,7 +156,7 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/slash"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtCurrentSteps"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -186,12 +186,12 @@
                         android:id="@+id/txtSteps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto"
                         android:text="@string/steps"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -199,12 +199,11 @@
                         android:id="@+id/txtCurrentSteps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="6dp"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="650"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtSteps"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -216,7 +215,7 @@
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto_bold"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtSlash"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -229,7 +228,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="@string/burned"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtSuggStepsNum"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -240,9 +239,8 @@
                         android:layout_marginStart="4dp"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtBurnedDescr"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -255,7 +253,7 @@
                         android:fontFamily="@font/roboto"
                         android:text="@string/cal"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtBurnedCalSteps"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -263,12 +261,11 @@
                         android:id="@+id/txtStepsProgressPercentage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="4dp"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="0%"
                         android:textColor="@color/black"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         app:layout_constraintStart_toEndOf="@+id/txtCal"
                         app:layout_constraintTop_toBottomOf="@+id/line2" />
 
@@ -362,7 +359,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

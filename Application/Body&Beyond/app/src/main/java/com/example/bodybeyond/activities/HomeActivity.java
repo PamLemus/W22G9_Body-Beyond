@@ -42,11 +42,14 @@ public class HomeActivity extends AppCompatActivity {
     ImageView BMIImgResult;
     TextView txtSuggestedCaloriesIntake;
     TextView txtSuggSteps;
-
-
+    TextView txtCurrentSteps;
+    TextView txtBurnedCalSteps;
+    TextView stepProgressPercentage;
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
     private static final DecimalFormat rf = new DecimalFormat("0,000");
+    private static final DecimalFormat tf = new DecimalFormat("00");
+    private static final DecimalFormat pf = new DecimalFormat("0%");
 
     String gender = "F";  //Value limited to "M"(male) or "F"(female)
     double height = 155;
@@ -55,14 +58,15 @@ public class HomeActivity extends AppCompatActivity {
     int age = 28;
     String BMIDescription;
     String suggestedAction;
-    String activity = "A";  //Value limited to "L"(light) or "M"(moderate) or "A"(active)
+    String activity = "L";  //Value limited to "L"(light) or "M"(moderate) or "A"(active)
     double suggCalIntakeFinal;
+    double targetStepsPerDay;
+    double currentSteps = 5000;
 
     //Navigation drawer
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
-
 
     TextView email;
     String useremail;
@@ -81,7 +85,6 @@ public class HomeActivity extends AppCompatActivity {
 //navigation drawer code
         NavDrawer();
         SetUpToolbar();
-
 
       // name.setText(username);
       //  Log.d("UserData",username+"" +
@@ -108,10 +111,7 @@ public class HomeActivity extends AppCompatActivity {
 
         });
 
-       //Porgress Bar configuration
-        ProgressBar progressBarSteps = findViewById(R.id.progressBarSteps);
-        progressBarSteps.setMax(100);  // target steps
-        progressBarSteps.setProgress(80);  //steps walked
+
 
         //Configuration for TabLayout
         tabLayoutDietExercise = findViewById(R.id.tabLayout);
@@ -137,7 +137,10 @@ public class HomeActivity extends AppCompatActivity {
         //Call Method to calculate and display target steps per day
         targetSteps (activity);
 
-
+        //Porgress Bar configuration
+        ProgressBar progressBarSteps = findViewById(R.id.progressBarSteps);
+        progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
+        progressBarSteps.setProgress((int)currentSteps);  //steps walked
     }
 
     //Method to change text color from Action Bar
@@ -147,6 +150,7 @@ public class HomeActivity extends AppCompatActivity {
         spannablerTitle.setSpan(new ForegroundColorSpan(color), 0, spannablerTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         actBar.setTitle(spannablerTitle);
     }
+
     //Method to calculate BMI Number
     public double calculateBMI (double height, double weight) {
         double cmHeight = (height/100);
@@ -293,7 +297,9 @@ public class HomeActivity extends AppCompatActivity {
         double burnedCalPerStep = 0.04;
         double burnedCalPerWeek;
         double targetStepsPerWeek;
-        double targetStepsPerDay;
+        double burnedCalPerDay;
+        double burnedCalperCurrentSteps;
+        double progressStepsBurnedCal;
 
         switch (activity) {
             case "L":
@@ -309,10 +315,22 @@ public class HomeActivity extends AppCompatActivity {
         burnedCalPerWeek = (burnedCalLose1KG*weightLostWeekly) /1;
         targetStepsPerWeek = (1*burnedCalPerWeek)/burnedCalPerStep;
         targetStepsPerDay = targetStepsPerWeek/7;
+        burnedCalPerDay = burnedCalPerWeek/7;
+        burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
+        progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
+
+
+        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
+        txtCurrentSteps.setText(rf.format(currentSteps));
 
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
         txtSuggSteps.setText(rf.format(targetStepsPerDay));
 
+        txtBurnedCalSteps = findViewById(R.id.txtBurnedCalSteps);
+        txtBurnedCalSteps.setText(tf.format(burnedCalperCurrentSteps));
+
+        stepProgressPercentage = findViewById(R.id.txtStepsProgressPercentage);
+        stepProgressPercentage.setText(pf.format(progressStepsBurnedCal));
 
     }
 
@@ -355,9 +373,11 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Welcome,Jasmine");
+        getSupportActionBar().setTitle("Welcome, " + username);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.app_name_dummy,R.string.app_name_dummy);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
     }
+
+
 }
