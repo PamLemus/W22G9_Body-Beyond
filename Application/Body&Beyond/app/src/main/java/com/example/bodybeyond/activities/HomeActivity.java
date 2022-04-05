@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -22,16 +24,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.adapters.ViewPagerDietExerciseAdapter;
+import com.example.bodybeyond.database.BodyAndBeyondDB;
 import com.example.bodybeyond.fragments.DietFragment;
 import com.example.bodybeyond.fragments.ExerciseFragment;
+import com.example.bodybeyond.interfaces.UserDao;
+import com.example.bodybeyond.models.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -51,17 +60,17 @@ public class HomeActivity extends AppCompatActivity {
     private static final DecimalFormat tf = new DecimalFormat("00");
     private static final DecimalFormat pf = new DecimalFormat("0%");
 
-    String gender = "F";  //Value limited to "M"(male) or "F"(female)
-    double height = 155;
-    double weight = 40;
+    String gender;  //Value limited to "M"(male) or "F"(female)
+    double height;
+    double weight;
     double BMIcalculation;
-    int age = 28;
+    int age;
     String BMIDescription;
     String suggestedAction;
-    String activity = "L";  //Value limited to "L"(light) or "M"(moderate) or "A"(active)
+    String activity;  //Value limited to "Light" or "Moderate" or "Active"
     double suggCalIntakeFinal;
     double targetStepsPerDay;
-    double currentSteps = 5000;
+    int currentSteps = 2500;
 
     //Navigation drawer
     DrawerLayout drawerLayout;
@@ -71,6 +80,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView email;
     String useremail;
     String username;
+    User userObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +88,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         SharedPreferences  sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
-         username =  sharedPreferences.getString("UserName" ,"null");
          useremail = sharedPreferences.getString("EMAIL","null");
         //TextView  name = findViewById(R.id.navUserName);
+
 
 //navigation drawer code
         NavDrawer();
@@ -104,14 +114,12 @@ public class HomeActivity extends AppCompatActivity {
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
         calculate.setOnClickListener((View view) -> {
-            //sharedPreferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE );
-            sharedPreferences.edit().clear().apply();
-          //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
+            getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE )
+            .edit().clear().apply();
+            //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
             startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
 
         });
-
-
 
         //Configuration for TabLayout
         tabLayoutDietExercise = findViewById(R.id.tabLayout);
@@ -135,12 +143,13 @@ public class HomeActivity extends AppCompatActivity {
         BMRCalculation(age, height, weight, gender, activity);
 
         //Call Method to calculate and display target steps per day
-        targetSteps (activity);
+        targetSteps (activity, currentSteps);
 
         //Porgress Bar configuration
         ProgressBar progressBarSteps = findViewById(R.id.progressBarSteps);
         progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
-        progressBarSteps.setProgress((int)currentSteps);  //steps walked
+        progressBarSteps.setProgress(currentSteps);  //steps walked
+
     }
 
     //Method to change text color from Action Bar
@@ -259,13 +268,13 @@ public class HomeActivity extends AppCompatActivity {
         int calFactorGainLose = 500; //Standard value to gain or lose 0.5kg per week
 
         switch (activity) {
-            case "L":
+            case "Light":
                 activityFactor = 1.375;
                 break;
-            case "M":
+            case "Moderate":
                 activityFactor = 1.465;
                 break;
-            case "A":
+            case "Active":
                 activityFactor = 1.55;
                 break;
         }
@@ -291,7 +300,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //Method to calculate Target Steps based on activity registered
-    public void targetSteps (String activity) {
+    public void targetSteps (String activity, int currentSteps) {
         double weightLostWeekly = 0.0;
         int burnedCalLose1KG = 7700;
         double burnedCalPerStep = 0.04;
@@ -302,13 +311,13 @@ public class HomeActivity extends AppCompatActivity {
         double progressStepsBurnedCal;
 
         switch (activity) {
-            case "L":
+            case "Light":
                 weightLostWeekly = 0.2;
                 break;
-            case "M":
+            case "Moderate":
                 weightLostWeekly = 0.3;
                 break;
-            case "A":
+            case "Active":
                 weightLostWeekly = 0.5;
                 break;
         }
@@ -318,7 +327,6 @@ public class HomeActivity extends AppCompatActivity {
         burnedCalPerDay = burnedCalPerWeek/7;
         burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
         progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
-
 
         txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
         txtCurrentSteps.setText(rf.format(currentSteps));
@@ -370,6 +378,19 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void SetUpToolbar() {
+        userObj= GetUser(useremail);
+        if (userObj == null) {
+            Toast.makeText(this, "Record does not exists.", Toast.LENGTH_SHORT).show();
+        } else {
+            username = userObj.getUserName();
+            gender = userObj.getUserGender();
+            height = userObj.getUserHeight();
+            weight = userObj.getUserWeight();
+            age = userObj.getUserAge();
+            activity = userObj.getActivityType();
+
+        }
+
         drawerLayout = findViewById(R.id.drawerLayout);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -377,6 +398,21 @@ public class HomeActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.app_name_dummy,R.string.app_name_dummy);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+    }
+
+    private User GetUser(String email) {
+        BodyAndBeyondDB db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
+                .allowMainThreadQueries().build();
+        UserDao userDao = db.userDao();
+        try {
+            User user = userDao.getUserInfo(email);
+            if (user != null) {
+                return user;
+            }
+        } catch (Exception ex) {
+            Log.d("Db", ex.getMessage());
+        }
+        return null;
     }
 
 

@@ -45,8 +45,7 @@ public class SignUpDetails extends AppCompatActivity {
     final String ACTIVITY_MODERATE = "Moderate";
     final String ACTIVITY_ACTIVE = "Active";
     List<String> spinnerItems = new ArrayList<>(
-            Arrays.asList("Choose your Activity", "Exercise 4-5 times/week", "Daily Exercise or intense exercise 3-4 times/week", "Intense exercise" +
-                    "6-7 times/week")
+            Arrays.asList("Choose your Activity", "Light: Exercise 1-3 times/week", "Moderate: Daily Exercise or intense exercise 3-5 times/week", "Active: Intense exercise 6-7 times/week")
     );
     BodyAndBeyondDB db;
     boolean flag = false;

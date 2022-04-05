@@ -29,12 +29,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, SignUp.class));
         });
 
-        Button home = findViewById(R.id.btnHome);
-        home.setOnClickListener((View view) -> {
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
-
-        });
-
     }
 
 }
