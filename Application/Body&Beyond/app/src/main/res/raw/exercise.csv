@@ -22,8 +22,8 @@ Moderate,Weight training,Dips - 15 rep,weight_light_dips
 Moderate,Weight training,Dumbbell chest fly - 15 rep,weight_light_chest_fly
 Moderate,Weight training,Single-leg squat - 15 rep,weight_light_single_leg_squat
 Moderate,Weight training,Dumbbell overhead triceps extension - 15 rep,weight_light_triceps
-Active,Cardio,Lateral Shuffles - 15 rep,cardio_light_Shuffles
-Active,Cardio,Lunges - 15 rep,cardio_light_Lunges
+Active,Cardio,Lateral Shuffles - 15 rep,cardio_light_shuffles
+Active,Cardio,Lunges - 15 rep,cardio_light_lunges
 Active,Cardio,Squat jumps - 15 rep,cardio_light_squat
 Active,Cardio,Inchworms - 15 rep,cardio_light_inchworms
 Active,Cardio,Burpees - 15 rep,cardio_light_burpees
