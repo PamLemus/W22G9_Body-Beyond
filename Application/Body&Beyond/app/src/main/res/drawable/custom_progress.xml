@@ -25,7 +25,7 @@
 <!--                <solid android:color="@color/orange"/> Solid background-->
                  <gradient
                     android:endColor="@color/light_gray"
-                    android:startColor="@color/orange"
+                    android:startColor="#FA5858"
                     android:useLevel="true" />
             </shape>
         </clip>

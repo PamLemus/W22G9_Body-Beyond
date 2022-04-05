@@ -1,9 +1,14 @@
 package com.example.bodybeyond.activities;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -18,10 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.room.Room;
@@ -38,11 +45,18 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
-import java.util.concurrent.ExecutorService;
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import android.app.NotificationManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import androidx.core.app.NotificationCompat;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements SensorEventListener {
 
     TabLayout tabLayoutDietExercise;
     ViewPager viewPagerDietExercise;
@@ -82,30 +96,35 @@ public class HomeActivity extends AppCompatActivity {
     String username;
     User userObj;
 
+    //Jaspal's Step Counter Implementation
+    //TextView currStep;
+    SensorManager sensorManager;
+    boolean running = false;
+    int steps;
+    SharedPreferences prefs = null;
+    SharedPreferences.Editor editor;
+
+    NotificationManagerCompat notificationManagerCompat;
+    Notification notification;
+
+    ProgressBar progressBarSteps;
+    private int progressStatus;
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        prefs = getApplicationContext().getSharedPreferences("LOCAL_STORAGE", MODE_PRIVATE);
+        editor = prefs.edit();
 
-        SharedPreferences  sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
+         SharedPreferences  sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
          useremail = sharedPreferences.getString("EMAIL","null");
-        //TextView  name = findViewById(R.id.navUserName);
 
-
-//navigation drawer code
+        //navigation drawer code
         NavDrawer();
         SetUpToolbar();
-
-      // name.setText(username);
-      //  Log.d("UserData",username+"" +
-        //        " "+useremail);
-//        ActionBar actBar = getSupportActionBar();
-//        actBar.setDisplayShowHomeEnabled(true);
-//        actBar.setDisplayUseLogoEnabled(true);
-//        actBar.setLogo(R.drawable.hamburger);
-//        actBar.setTitle("  Welcome, Jasmine"); //Read the name from DB
-//        ColorDrawable colorDrawable = new ColorDrawable(Color.parseColor("#FFFCF4"));
-//        actBar.setBackgroundDrawable(colorDrawable);
 
         //Changing Text Color of the Action Bar
         int black = Color.BLACK;
@@ -114,11 +133,8 @@ public class HomeActivity extends AppCompatActivity {
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
         calculate.setOnClickListener((View view) -> {
-            getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE )
-            .edit().clear().apply();
-            //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
+            getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE ).edit().clear().apply();
             startActivity(new Intent(HomeActivity.this, CalculateBMIActivity.class));
-
         });
 
         //Configuration for TabLayout
@@ -143,12 +159,24 @@ public class HomeActivity extends AppCompatActivity {
         BMRCalculation(age, height, weight, gender, activity);
 
         //Call Method to calculate and display target steps per day
+        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
         targetSteps (activity, currentSteps);
 
-        //Porgress Bar configuration
-        ProgressBar progressBarSteps = findViewById(R.id.progressBarSteps);
+        //step counter progress bar implementation.
+        currentSteps = progressStatus;
+        progressBarSteps = findViewById(R.id.progressBarSteps);
+        progressStatus = prefs.getInt("steps", 0);
+        currentSteps = progressStatus;
         progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
         progressBarSteps.setProgress(currentSteps);  //steps walked
+        CustomScheduler();
+
+       // currStep = findViewById(R.id.txtCurrentSteps);
+       // progressBar = findViewById(R.id.progressBarSteps);
+
+       // progressBar.setMax((int)targetStepsPerDay);  // target steps
+      //  progressBar.setProgress((int)currentSteps);  //steps walked
+
 
     }
 
@@ -280,7 +308,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         //Basis of calculation is for Maintain Weight
-        if (gender.equals("F")) {
+        if (gender.equals("Female")) {
             suggCalIntakeMainNum = (activityFactor*femaleBMRFormula);
         } else {
             suggCalIntakeMainNum = (activityFactor*maleBMRFormula);
@@ -328,7 +356,7 @@ public class HomeActivity extends AppCompatActivity {
         burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
         progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
 
-        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
+//        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
         txtCurrentSteps.setText(rf.format(currentSteps));
 
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
@@ -383,7 +411,7 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "Record does not exists.", Toast.LENGTH_SHORT).show();
         } else {
             username = userObj.getUserName();
-            gender = userObj.getUserGender();
+            gender = (userObj.getUserGender() == null ? "Female" : userObj.getUserGender());
             height = userObj.getUserHeight();
             weight = userObj.getUserWeight();
             age = userObj.getUserAge();
@@ -415,5 +443,91 @@ public class HomeActivity extends AppCompatActivity {
         return null;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void CustomScheduler() {
+        // Next run at midnight (UTC) - Replace with local time zone, if needed
+        final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("UTC"));
+        ZonedDateTime nextRun = now.withHour(0).withMinute(0).withSecond(0);
+        // If midnight is in the past, add one day
+        if (now.compareTo(nextRun) > 0) {
+            nextRun = nextRun.plusDays(1);
+        }
+        // Get duration between now and midnight
+        final Duration initialDelay = Duration.between(now, nextRun);
 
+        // Schedule a task to run at midnight and then every day
+        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> resetStepCount(),
+                initialDelay.toMillis(),
+                Duration.ofDays(1).toMillis(),
+                TimeUnit.MILLISECONDS);
+    }
+
+    private void resetStepCount() {
+        //   reset every 24 hours.
+        GetNotification();
+        editor.clear();
+        steps = 0;
+        progressStatus = steps;
+        editor.putInt("steps", steps);
+        editor.commit();
+        txtCurrentSteps.setText(String.valueOf(steps));
+        progressBarSteps.setProgress(progressStatus);
+    }
+
+    private void GetNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("B&B", "Body And Beyond", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "B&B")
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Notification")
+                .setContentText(String.valueOf(steps));
+        notification = builder.build();
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, notification);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        running = true;
+        Sensor countSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        if (countSensor != null) {
+            sensorManager.registerListener(this, countSensor, SensorManager.SENSOR_DELAY_UI);
+            steps = prefs.getInt("steps", 0);
+            progressStatus = steps;
+            progressBarSteps.setProgress(progressStatus);
+            txtCurrentSteps.setText(String.valueOf(steps));
+        } else {
+            Toast.makeText(this, "Sensor not found.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        running = false;
+        editor.putInt("steps", steps);
+        editor.commit();
+        progressStatus = steps;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        if (running) {
+            if (sensorEvent.values[0] > 0) {
+                steps++;
+                progressStatus = steps;
+            }
+            txtCurrentSteps.setText(String.valueOf(steps));
+            progressBarSteps.setProgress(progressStatus);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) { }
 }
