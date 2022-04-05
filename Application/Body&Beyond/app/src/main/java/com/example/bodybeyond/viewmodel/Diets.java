@@ -1,11 +1,11 @@
 package com.example.bodybeyond.viewmodel;
 
-public class Diet {
+public class Diets {
     public String DietDescription;
     public int DietImageItem;
     public String DietName;
 
-    public Diet(String dietDescription, int dietImageItem, String dietName) {
+    public Diets(String dietDescription, int dietImageItem, String dietName) {
         DietDescription = dietDescription;
         DietImageItem = dietImageItem;
         DietName = dietName;

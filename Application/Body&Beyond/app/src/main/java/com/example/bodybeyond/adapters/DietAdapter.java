@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bodybeyond.R;
-import com.example.bodybeyond.viewmodel.Diet;
+import com.example.bodybeyond.viewmodel.Diets;
 
 import java.util.List;
 
 public class DietAdapter extends RecyclerView.Adapter<DietAdapter.DietViewHolder>{
-    List<Diet> DietList;
+    List<Diets> DietList;
 
-    public DietAdapter(List<Diet> dietList) {
+    public DietAdapter(List<Diets> dietList) {
         DietList = dietList;
     }
 
@@ -32,7 +32,7 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.DietViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull DietViewHolder holder, int position) {
-        Diet diet = DietList.get(position);
+        Diets diet = DietList.get(position);
         holder.dietName.setText(diet.getDietName());
         holder.dietImg.setImageResource(diet.getDietImageItem());
         holder.dietDescription.setText(diet.getDietDescription());

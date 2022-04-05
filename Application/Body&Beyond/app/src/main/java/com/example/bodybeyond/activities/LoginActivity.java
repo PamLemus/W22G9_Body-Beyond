@@ -319,7 +319,7 @@ public class LoginActivity extends AppCompatActivity {
         AtomicBoolean flag = new AtomicBoolean(false);
         try {
             User user = userDao.getUserInfo(email);
-            Toast.makeText(this, user.getUserWeight() + " " + user.getUserHeight(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, user.getUserWeight() + " " + user.getUserHeight(), Toast.LENGTH_SHORT).show();
             if (user != null) {
                 flag.set(true);
             }

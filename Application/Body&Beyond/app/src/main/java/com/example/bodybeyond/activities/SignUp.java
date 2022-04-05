@@ -80,8 +80,6 @@ public class SignUp extends AppCompatActivity{
                 .allowMainThreadQueries().build();
         UserDao userDao = db.userDao();
         AtomicBoolean flag = new AtomicBoolean(false);
-//        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//       executorService.execute(() -> {
         try {
             User user = userDao.getUserInfo(email);
             if(user != null)
@@ -92,9 +90,6 @@ public class SignUp extends AppCompatActivity{
         catch (Exception ex) {
             Log.d("Db", ex.getMessage());
         }
-
-//        });
-
         return flag.get();
     }
 }
