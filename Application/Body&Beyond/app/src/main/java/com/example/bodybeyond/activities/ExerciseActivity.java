@@ -68,10 +68,8 @@ public class ExerciseActivity extends AppCompatActivity {
         try {
             if(exerciseActivity != null && exerciseType != null)
             {
-                exercises = exerciseDao.getExercises(exerciseActivity, exerciseType);
-                //exercises = exerciseDao.getAllExercises();
+                exercises = exerciseDao.getExercises(exerciseType, exerciseActivity);
                 if(exercises.size() > 0) {
-                   // exercises.stream().filter(x -> x.getExerciseActivity() == exerciseActivity && x.getExerciseType() == exerciseActivity);
                     for (Exercise item: exercises) {
                         int resID = getResources().getIdentifier(item.getExerciseImg(), "drawable" , getPackageName()) ;
                         Exercises exeObj =new Exercises(item.getExerciseType(),resID,item.getExerciseDesc());

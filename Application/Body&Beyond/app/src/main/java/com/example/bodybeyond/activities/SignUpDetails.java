@@ -162,16 +162,11 @@ public class SignUpDetails extends AppCompatActivity {
 
 
     private void QueryExecution(User user, UserDao userdao) {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
             try {
                 userdao.insertUsers(user);
 
             } catch (Exception ex) {
                 Log.d("Db", ex.getMessage());
             }
-//        });
-
-
     }
 }
