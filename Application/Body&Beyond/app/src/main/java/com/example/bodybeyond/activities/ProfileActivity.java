@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
-        useremail = sharedPreferences.getString("EMAIL","null");
+        useremail = sharedPreferences.getString("EMAIL", "null");
 
         UserInfo();
 
@@ -70,9 +70,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         ImageView backHome = findViewById(R.id.imgProfileBackBtn);
         backHome.setOnClickListener((View view) -> {
-        startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
+            startActivity(new Intent(ProfileActivity.this, HomeActivity.class));
 
-      });
+        });
 
         profileName = findViewById(R.id.editTxtProfileName);
         profileName.setText(username);
@@ -111,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void UserInfo() {
-        userObj= GetUser(useremail);
+        userObj = GetUser(useremail);
         if (userObj == null) {
             Toast.makeText(this, "Record does not exists.", Toast.LENGTH_SHORT).show();
         } else {
@@ -124,7 +124,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         }
 
-        }
+    }
 
     private User GetUser(String email) {
         BodyAndBeyondDB db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")

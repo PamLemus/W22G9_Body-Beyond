@@ -97,7 +97,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     User userObj;
 
     //Jaspal's Step Counter Implementation
-    //TextView currStep;
     SensorManager sensorManager;
     boolean running = false;
     int steps;
@@ -128,7 +127,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         //Changing Text Color of the Action Bar
         int black = Color.BLACK;
-        //setActionbarTextColor(actBar, black);
 
         //Button Calculate Again Click Listener
         Button calculate = findViewById(R.id.btnCalculateAgain);
@@ -170,14 +168,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
         progressBarSteps.setProgress(currentSteps);  //steps walked
         CustomScheduler();
-
-       // currStep = findViewById(R.id.txtCurrentSteps);
-       // progressBar = findViewById(R.id.progressBarSteps);
-
-       // progressBar.setMax((int)targetStepsPerDay);  // target steps
-      //  progressBar.setProgress((int)currentSteps);  //steps walked
-
-
     }
 
     //Method to change text color from Action Bar

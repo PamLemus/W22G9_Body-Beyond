@@ -63,13 +63,15 @@ public class LoginActivity extends AppCompatActivity {
 
     final String FACEBOOK_LOGIN = "FACEBOOK";
     final String GOOGLE_LOGIN = "GOOGLE";
+    final String TAG = "LOGIN_ACTIVITY";
+    static final int RC_SIGN_IN = 0;
+
     private Button googleLogIn;
     private Button facebookLogIn;
 
     //Facebook Login
     private CallbackManager callbackManager;
 
-    final String TAG = "LOGIN_ACTIVITY";
     EditText emailId;
     EditText password;
     Button btnLogIn;
@@ -78,9 +80,8 @@ public class LoginActivity extends AppCompatActivity {
     String email;
     String pwd;
     String fb_email;
-
     GoogleSignInClient mGoogleSignInClient;
-    static final int RC_SIGN_IN = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,7 +298,6 @@ public class LoginActivity extends AppCompatActivity {
                     edit.putString("NAME", account.getDisplayName());
                     edit.putString("EMAIL", account.getEmail());
                     edit.commit();
-                    //   UserEmailPref(account.getEmail());
                     startActivity(new Intent(this, CalculateBMIActivity.class));
                 } else {
                     UserEmailPref(account.getEmail());
@@ -319,7 +319,6 @@ public class LoginActivity extends AppCompatActivity {
         AtomicBoolean flag = new AtomicBoolean(false);
         try {
             User user = userDao.getUserInfo(email);
-            //Toast.makeText(this, user.getUserWeight() + " " + user.getUserHeight(), Toast.LENGTH_SHORT).show();
             if (user != null) {
                 flag.set(true);
             }

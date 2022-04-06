@@ -82,11 +82,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 }
             }
            else {
-               exercisesList.add(new Exercises("Burpees", R.drawable.bmi, "Place your hands on the floor, spring your feet back and do a press up. And then jump your feet back in and spring back up. Repeat."));
-               exercisesList.add(new Exercises("FROG JUMPS", R.drawable.bmi, "These are a real killer and it’s surprising how quickly they get your heart rate up. Simply jump with both legs over the box and turn around to jump back over it again. Make sure you clear the box with a little room to spare to keep the pressure on."));
-               exercisesList.add(new Exercises("MOUNTAIN CLIMBERS", R.drawable.bmi, "Place your hands on the step so that you’re in an incline press up position. Bring one knee in and then straighten it back out again. Then bring the other knee in and straighten it back out again. Do this quickly and keep going until the minute’s up!"));
-               exercisesList.add(new Exercises("QUICK STEP UPS", R.drawable.bmi, "These may seem easy but done fast, they’re a really effective calorie burner. Set the raiser blocks to a good height and then step up and back down one foot at a time as fast as you can. Swap your leading foot halfway through."));
-               exercisesList.add(new Exercises("LEG RAISES", R.drawable.bmi, "Doing these on the step will help you avoid the temptation to rest your feet on the floor, so you’ll definitely feel the burn. Lie on the step with your feet out straight. Raise your legs up together while keeping your back flat and your abs pushed down. Once they’re at a 90-degree angle to your body, carefully lower them back down to the starting position. Repeat."));
+                Toast.makeText(this, "Query parameters is null. ", Toast.LENGTH_SHORT).show();
            }
         } catch (Exception ex) {
             Log.d("Db", ex.getMessage());
