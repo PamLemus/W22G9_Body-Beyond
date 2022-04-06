@@ -20,6 +20,7 @@ import com.example.bodybeyond.interfaces.DietDao;
 import com.example.bodybeyond.models.Diet;
 import com.example.bodybeyond.viewmodel.Diets;
 
+import java.time.MonthDay;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +38,13 @@ public class DietActivity extends AppCompatActivity {
         View view = dietBinding.getRoot();
         setContentView(view);
         Bundle bundle = getIntent().getExtras();
-        String diet_range = bundle.getString("DIET_RANGE", null);
-        String diet_type = bundle.getString("DIET_TYPE", null);
-        String diet_day = bundle.getString("DIET_DAY", null);
+        String diet_range = "Range 1";// bundle.getString("DIET_RANGE", null);
+        String diet_type = "Vegan";// bundle.getString("DIET_TYPE", null);
+        String diet_day = "Monday";// bundle.getString("DIET_DAY", null);
         AddData(diet_type,diet_range,diet_day);
         RecyclerView recyclerView = findViewById(R.id.recyclerListViewDiet);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new DietAdapter(dietList));
-       // recyclerView.setItemAnimator(new SlideInUpAnimator());
         backBtn = dietBinding.imageButtonback;
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class DietActivity extends AppCompatActivity {
                 List<Diet> diets = dietDao.getDiets(dietType, dietRange, dietDay);
                 if (diets.size() > 0) {
                     for (Diet item : diets) {
-                        int resID = getResources().getIdentifier("bmi", "drawable", getPackageName());
+                        int resID = getResources().getIdentifier(item.getDietImg(), "drawable", getPackageName());
                         Diets dietObj = new Diets(item.getDietDesc(), resID, item.getDietName());
                         dietList.add(dietObj);
                     }
@@ -75,10 +75,7 @@ public class DietActivity extends AppCompatActivity {
             }
             else
             {
-                dietList.add(new Diets("Two eggs fried in butter served with sauteed greens",R.drawable.bmi,"Breakfast"));
-                dietList.add(new Diets("A bunless burger topped with cheese, mushrooms, and avocado atop a bed of greens",R.drawable.bmi,"Lunch"));
-                dietList.add(new Diets("Pork chops with green beans sauteed in olive oil",R.drawable.bmi,"Dinner"));
-
+                Toast.makeText(this, "Query parameters is null. ", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception ex) {
             Log.d("Db", ex.getMessage());

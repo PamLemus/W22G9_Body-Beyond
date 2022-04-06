@@ -102,9 +102,8 @@ public class SignUpDetails extends AppCompatActivity {
                 }
                 user = new User(email, name.getText().toString(), userAge,
                         userGender, userHeight, userWeight, selectedActivity, userPwd);
-                DBConnection();
                 if (user != null && userDao != null) {
-                    QueryExecution(user, userDao);
+                    QueryExecution(user);
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("UserName", name.getText().toString());
@@ -142,7 +141,7 @@ public class SignUpDetails extends AppCompatActivity {
         } else if (spinnerActivity.getSelectedItemPosition() == 0) {
             Toast.makeText(SignUpDetails.this, "Select valid activity.", Toast.LENGTH_SHORT).show();
             flag = false;
-        } else if (userPwd.length() < 8 && !(new Helper().isValidPassword(userPwd))) {
+        } else if (userPwd.length() < 8 || !(new Helper().isValidPassword(userPwd))) {
             // Password must contain minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.
             Toast.makeText(SignUpDetails.this, "Password is not valid.", Toast.LENGTH_SHORT).show();
             flag = false;
@@ -154,17 +153,12 @@ public class SignUpDetails extends AppCompatActivity {
         }
     }
 
-    private void DBConnection() {
-        db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
-                .allowMainThreadQueries().build();
-        userDao = db.userDao();
-    }
-
-
-    private void QueryExecution(User user, UserDao userdao) {
+    private void QueryExecution(User user) {
             try {
-                userdao.insertUsers(user);
-
+                db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
+                        .allowMainThreadQueries().build();
+                userDao = db.userDao();
+                userDao.insertUsers(user);
             } catch (Exception ex) {
                 Log.d("Db", ex.getMessage());
             }
