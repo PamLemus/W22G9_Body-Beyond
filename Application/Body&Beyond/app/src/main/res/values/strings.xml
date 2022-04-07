@@ -62,5 +62,7 @@
     <string name="app_name_dummy"></string>
     <string name="profile">Profile</string>
     <string name="activity">Activity</string>
-    <string name="changeProfile">Submit Changes</string>
+    <string name="changeProfile">Save changes</string>
+    <string name="editProfile">editProfileInfo</string>
+    <string name="edit">Edit Information</string>
 </resources>

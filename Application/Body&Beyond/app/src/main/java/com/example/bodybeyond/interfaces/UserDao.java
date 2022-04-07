@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.bodybeyond.models.User;
 
@@ -24,4 +25,10 @@ public interface UserDao {
 
     @Query("SELECT * FROM users WHERE userEmail = :email")
     User getUserInfo(String email);
+
+    @Query("UPDATE users SET userName = :name, userAge = :age, userGender = :gender, userHeight = :height, userWeight = :weight, activityType = :activity WHERE userEmail = :email")
+    int updateAllProfileInfo(String name, int age, String gender, double height, double weight, String activity, String email);
+
+
+
 }

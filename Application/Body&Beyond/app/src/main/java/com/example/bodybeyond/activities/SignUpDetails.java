@@ -102,16 +102,17 @@ public class SignUpDetails extends AppCompatActivity {
                 }
                 user = new User(email, name.getText().toString(), userAge,
                         userGender, userHeight, userWeight, selectedActivity, userPwd);
+                DBConnection();
                 if (user != null && userDao != null) {
-                    QueryExecution(user);
+                    QueryExecution(user, userDao);
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("UserName", name.getText().toString());
                     editor.putString("UserEmail", email);
                     editor.commit();
-                    Log.d("USERINFOSignup", name.getText().toString()+ "," +email);
+                    Log.d("USERINFOSignup", name.getText().toString()+ "," + email);
 
-                    //  sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
+                     // sharedPreferences.edit().remove("SIGNUP_PREF"). commit();
                     startActivity(new Intent(SignUpDetails.this, LoginActivity.class));
                 }
             } else {
@@ -141,11 +142,11 @@ public class SignUpDetails extends AppCompatActivity {
         } else if (spinnerActivity.getSelectedItemPosition() == 0) {
             Toast.makeText(SignUpDetails.this, "Select valid activity.", Toast.LENGTH_SHORT).show();
             flag = false;
-        } else if (userPwd.length() < 8 || !(new Helper().isValidPassword(userPwd))) {
+        }  else if (userPwd.length() < 8 || !(new Helper().isValidPassword(userPwd))) {
             // Password must contain minimum 8 characters at least 1 Alphabet, 1 Number and 1 Special Character.
             Toast.makeText(SignUpDetails.this, "Password is not valid.", Toast.LENGTH_SHORT).show();
             flag = false;
-        } else if (!(new Helper().emailValidator(email))) {
+        }  else if (!(new Helper().emailValidator(email))) {
             Toast.makeText(SignUpDetails.this, "Enter valid Email address !", Toast.LENGTH_SHORT).show();
             flag = false;
         } else {
@@ -153,11 +154,14 @@ public class SignUpDetails extends AppCompatActivity {
         }
     }
 
-    private void QueryExecution(User user) {
+    private void DBConnection() {
+        db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
+                .allowMainThreadQueries().build();
+        userDao = db.userDao();
+    }
+
+    private void QueryExecution(User user, UserDao userdao) {
             try {
-                db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
-                        .allowMainThreadQueries().build();
-                userDao = db.userDao();
                 userDao.insertUsers(user);
             } catch (Exception ex) {
                 Log.d("Db", ex.getMessage());

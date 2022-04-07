@@ -7,11 +7,24 @@
     android:background="@color/light_yellow"
     tools:context=".activities.ProfileActivity">
 
-    <TextView
-        android:id="@+id/txtProfileUserActivity"
+    <ImageButton
+        android:id="@+id/imgbtnEditProfileInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="24dp"
+        android:contentDescription="@string/editProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/txtProfileUserActivity"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/activity"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -19,15 +32,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileUserWeight" />
 
     <EditText
         android:id="@+id/editTxtProfileWeight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="10dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -38,15 +51,16 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtProfileUserName"
+        app:layout_constraintStart_toEndOf="@+id/txtProfileUserWeight"
         app:layout_constraintTop_toBottomOf="@+id/editTxtProfileHeight"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/txtProfileUserWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/WeightText"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -54,15 +68,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileHeight" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileUserHeight" />
 
     <EditText
         android:id="@+id/editTxtProfileHeight"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -73,15 +87,16 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtProfileUserName"
+        app:layout_constraintStart_toEndOf="@+id/txtProfileUserHeight"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/txtProfileUserHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/HeightText"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -89,13 +104,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileUserGender" />
 
     <TextView
         android:id="@+id/txtProfileUserGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/GenderText"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -103,15 +119,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileAge" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileUserAge" />
 
     <EditText
         android:id="@+id/editTxtProfileAge"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="10dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -122,15 +138,16 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtProfileUserName"
+        app:layout_constraintStart_toEndOf="@+id/txtProfileUserAge"
         app:layout_constraintTop_toBottomOf="@+id/editTxtProfileName"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/txtProfileUserAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/Ageplaceholder"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -138,15 +155,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileUserName" />
 
     <EditText
         android:id="@+id/editTxtProfileName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="10dp"
         android:background="?attr/actionModeBackground"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -158,13 +175,15 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtProfileUserName"
-        app:layout_constraintTop_toBottomOf="@+id/txtUserEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUserEmail"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/txtProfileUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
         android:text="@string/userNameText"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -172,13 +191,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUserEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtProfileEmail" />
 
     <TextView
         android:id="@+id/txtProfileEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:gravity="center_vertical"
         android:text="@string/txtEmail"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -220,11 +240,11 @@
 
     <TextView
         android:id="@+id/txtUserEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
         android:background="@color/light_gray"
         android:ems="10"
         android:fontFamily="@font/roboto"
@@ -235,15 +255,15 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtProfileEmail"
-        app:layout_constraintTop_toBottomOf="@+id/txtProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfileBackBtn"
         tools:ignore="TextContrastCheck" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtProfileUserGender"
@@ -251,15 +271,14 @@
 
         <RadioButton
             android:id="@+id/radioBtnMale"
-            android:layout_width="match_parent"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:paddingEnd="50sp"
             android:text="@string/maletext"
             android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/radioBtnFemale"
-            android:layout_width="match_parent"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/FemaleText"
             android:textSize="16sp" />
@@ -267,17 +286,18 @@
 
     <Spinner
         android:id="@+id/spinnerProfileActivity"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="235dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="10dp"
         android:background="?attr/actionModeBackground"
         android:contentDescription="@string/des"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/txtProfileUserActivity"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileWeight" />
+        app:layout_constraintTop_toBottomOf="@+id/editTxtProfileWeight"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnChangeProfile"

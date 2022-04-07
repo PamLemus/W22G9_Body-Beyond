@@ -71,7 +71,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     private static final DecimalFormat df = new DecimalFormat("0.0");
     private static final DecimalFormat rf = new DecimalFormat("0,000");
-    private static final DecimalFormat tf = new DecimalFormat("00");
     private static final DecimalFormat pf = new DecimalFormat("0%");
 
     String gender;  //Value limited to "M"(male) or "F"(female)
@@ -84,7 +83,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     String activity;  //Value limited to "Light" or "Moderate" or "Active"
     double suggCalIntakeFinal;
     double targetStepsPerDay;
-    int currentSteps = 2500;
+    int currentSteps;
 
     //Navigation drawer
     DrawerLayout drawerLayout;
@@ -156,9 +155,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         //Call Method to calculate suggested Calories Intake
         BMRCalculation(age, height, weight, gender, activity);
 
-        //Call Method to calculate and display target steps per day
-        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
-        targetSteps (activity, currentSteps);
+
 
         //step counter progress bar implementation.
         currentSteps = progressStatus;
@@ -168,14 +165,10 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
         progressBarSteps.setProgress(currentSteps);  //steps walked
         CustomScheduler();
-    }
 
-    //Method to change text color from Action Bar
-    private void setActionbarTextColor(ActionBar actBar, int color) {
-        String title = actBar.getTitle().toString();
-        Spannable spannablerTitle = new SpannableString(title);
-        spannablerTitle.setSpan(new ForegroundColorSpan(color), 0, spannablerTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        actBar.setTitle(spannablerTitle);
+        //Call Method to calculate and display target steps per day
+        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
+        targetSteps (activity, currentSteps);
     }
 
     //Method to calculate BMI Number
@@ -346,14 +339,13 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
         progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
 
-//        txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
         txtCurrentSteps.setText(rf.format(currentSteps));
 
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
         txtSuggSteps.setText(rf.format(targetStepsPerDay));
 
         txtBurnedCalSteps = findViewById(R.id.txtBurnedCalSteps);
-        txtBurnedCalSteps.setText(tf.format(burnedCalperCurrentSteps));
+        txtBurnedCalSteps.setText(df.format(burnedCalperCurrentSteps));
 
         stepProgressPercentage = findViewById(R.id.txtStepsProgressPercentage);
         stepProgressPercentage.setText(pf.format(progressStepsBurnedCal));
@@ -492,6 +484,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             progressStatus = steps;
             progressBarSteps.setProgress(progressStatus);
             txtCurrentSteps.setText(String.valueOf(steps));
+            targetSteps (activity, currentSteps);
         } else {
             Toast.makeText(this, "Sensor not found.", Toast.LENGTH_SHORT).show();
         }
@@ -504,6 +497,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         editor.putInt("steps", steps);
         editor.commit();
         progressStatus = steps;
+        targetSteps (activity, currentSteps);
     }
 
     @Override
@@ -512,6 +506,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
             if (sensorEvent.values[0] > 0) {
                 steps++;
                 progressStatus = steps;
+                targetSteps (activity, currentSteps);
             }
             txtCurrentSteps.setText(String.valueOf(steps));
             progressBarSteps.setProgress(progressStatus);
