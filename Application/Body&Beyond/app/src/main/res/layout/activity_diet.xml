@@ -26,6 +26,7 @@
         android:layout_marginTop="40dp"
         android:text="TextView"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageButtonback"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,9 +1,5 @@
 package com.example.bodybeyond.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,29 +12,19 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.database.BodyAndBeyondDB;
 import com.example.bodybeyond.databinding.ActivityCalculateBmiactivityBinding;
 import com.example.bodybeyond.interfaces.UserDao;
 import com.example.bodybeyond.models.User;
-import com.example.bodybeyond.utilities.Helper;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class CalculateBMIActivity extends AppCompatActivity
 {
@@ -62,7 +48,7 @@ public class CalculateBMIActivity extends AppCompatActivity
     );
     SharedPreferences preferences;
     boolean flag = false;
-
+    boolean visibility;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +62,7 @@ public class CalculateBMIActivity extends AppCompatActivity
         backBtn = binding.imgBackBtnCalBmi;
 
         preferences = getSharedPreferences("SIGNUP_PREF", MODE_PRIVATE);
-        boolean visibility = preferences.getBoolean("VISIBILITY", false);
+        visibility = preferences.getBoolean("VISIBILITY", false);
         socialLogin = preferences.getString("SOCIAL_LOGIN", null);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,8 +117,9 @@ public class CalculateBMIActivity extends AppCompatActivity
                                     name = preferences.getString("NAME", null);
                                     String gender = preferences.getString("GENDER", null);
                                     User user = new User(email, name, userAge,
-                                            gender, userHeight, userWeight, selectedActivity, socialLogin);
+                                            gender == null ? "M" : gender, userHeight, userWeight, selectedActivity, socialLogin);
                                     if(user != null) {
+                                        UserEmailPref(email);
                                         QueryExecution(user);
                                         startActivity(new Intent(CalculateBMIActivity.this, HomeActivity.class));
                                         finish();
@@ -171,20 +158,33 @@ public class CalculateBMIActivity extends AppCompatActivity
                         }
         });
     }
+    private void UserEmailPref(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("EMAIL", email);
+        edit.commit();
+    }
 
     private void Validate() {
-        double userWeight = Double.parseDouble(weight.getText().toString());
-        double userHeight = Double.parseDouble(height.getText().toString());
         if((weight.getText().toString().isEmpty()) || (height.getText().toString().isEmpty())) {
-            Toast.makeText(CalculateBMIActivity.this, "Please enter age, height and weight.", Toast.LENGTH_SHORT).show();
+            if(visibility) {
+                Toast.makeText(CalculateBMIActivity.this, "Please enter age, height and weight.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(CalculateBMIActivity.this, "Please enter height and weight.", Toast.LENGTH_SHORT).show();
+            }
             flag = false;
         }
-        else if(userHeight <= 0 ){
+        else if(Double.parseDouble(height.getText().toString()) <= 0 ){
             Toast.makeText(CalculateBMIActivity.this, "Height must be greater than zero.", Toast.LENGTH_SHORT).show();
             flag = false;
         }
-        else if(userWeight <= 0 ){
+        else if(Double.parseDouble(weight.getText().toString()) <= 0 ){
             Toast.makeText(CalculateBMIActivity.this, "Weight must be greater than zero.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }
+        else if (visibility && spinnerActivity.getSelectedItemPosition() == 0) {
+            Toast.makeText(CalculateBMIActivity.this, "Select valid activity.", Toast.LENGTH_SHORT).show();
             flag = false;
         }
         else {

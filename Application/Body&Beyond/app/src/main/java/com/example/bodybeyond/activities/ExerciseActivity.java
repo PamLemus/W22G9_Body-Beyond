@@ -1,18 +1,19 @@
 package com.example.bodybeyond.activities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.adapters.ExerciseAdapter;
@@ -32,6 +33,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
     List<Exercises> exercisesList = new ArrayList<>();
     ImageButton btnBack;
+    TextView title;
     @Override
     @RequiresApi(api = Build.VERSION_CODES.N)
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class ExerciseActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         String exercise_activity = "Light";// bundle.getString("EXERCISE_ACTIVITY", null);
         String exercise_type ="Cardio";// bundle.getString("EXERCISE_TYPE", null);
+        title = binding.txtExercixeTitle;
+        title.setText("Exercise for " + exercise_type);
         AddData(exercise_activity, exercise_type);
         // Lookup the recyclerview in activity layout
         RecyclerView recyclerView = findViewById(R.id.exerciseRecyclerView);
@@ -70,6 +74,7 @@ public class ExerciseActivity extends AppCompatActivity {
             {
                 exercises = exerciseDao.getExercises(exerciseType, exerciseActivity);
                 if(exercises.size() > 0) {
+                    exercisesList.clear();
                     for (Exercise item: exercises) {
                         int resID = getResources().getIdentifier(item.getExerciseImg(), "drawable" , getPackageName()) ;
                         Exercises exeObj =new Exercises(item.getExerciseType(),resID,item.getExerciseDesc());

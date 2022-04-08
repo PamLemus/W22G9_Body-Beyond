@@ -45,6 +45,9 @@ public class Diet {
         this.dietDesc = dietDesc;
         this.dietImg = dietImg;
     }
+    public  Diet(){
+
+    }
 
     public int getDietId() {
         return dietId;

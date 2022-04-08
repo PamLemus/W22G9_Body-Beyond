@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Dao;
 import androidx.room.Room;
 
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.database.BodyAndBeyondDB;
 import com.example.bodybeyond.interfaces.DietDao;
 import com.example.bodybeyond.interfaces.ExerciseDao;
-import com.example.bodybeyond.interfaces.UserDao;
 import com.example.bodybeyond.models.Diet;
 import com.example.bodybeyond.models.Exercise;
 

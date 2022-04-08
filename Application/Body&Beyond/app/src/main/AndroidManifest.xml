@@ -19,10 +19,7 @@
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false" >
-
-
         </activity>
-
         <activity
             android:name=".activities.DietActivity"
             android:exported="false"
@@ -48,11 +45,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
-
-
         </activity>
         <activity
             android:name=".activities.SignUp"
@@ -73,7 +65,6 @@
             android:name=".activities.ExerciseActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -101,5 +92,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
