@@ -386,24 +386,24 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     public void SetUpToolbar() {
         userObj= GetUser(useremail);
         if (userObj == null) {
-            Toast.makeText(this, "Record does not exists.", Toast.LENGTH_SHORT).show();
+              Toast.makeText(this, "Record does not exists.", Toast.LENGTH_SHORT).show();
         } else {
             username = userObj.getUserName();
-            gender = (userObj.getUserGender() == null ? "Female" : userObj.getUserGender());
+            gender = (userObj.getUserGender() == null ? "F" : userObj.getUserGender());
             height = userObj.getUserHeight();
             weight = userObj.getUserWeight();
             age = userObj.getUserAge();
             activity = userObj.getActivityType();
-
+            drawerLayout = findViewById(R.id.drawerLayout);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle("Welcome, " + username);
+            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.app_name_dummy,R.string.app_name_dummy);
+            drawerLayout.addDrawerListener(actionBarDrawerToggle);
+            actionBarDrawerToggle.syncState();
         }
 
-        drawerLayout = findViewById(R.id.drawerLayout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Welcome, " + username);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.app_name_dummy,R.string.app_name_dummy);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+
     }
 
     private User GetUser(String email) {

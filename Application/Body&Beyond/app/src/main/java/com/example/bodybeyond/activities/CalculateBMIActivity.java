@@ -117,8 +117,9 @@ public class CalculateBMIActivity extends AppCompatActivity
                                     name = preferences.getString("NAME", null);
                                     String gender = preferences.getString("GENDER", null);
                                     User user = new User(email, name, userAge,
-                                            gender, userHeight, userWeight, selectedActivity, socialLogin);
+                                            gender == null ? "M" : gender, userHeight, userWeight, selectedActivity, socialLogin);
                                     if(user != null) {
+                                        UserEmailPref(email);
                                         QueryExecution(user);
                                         startActivity(new Intent(CalculateBMIActivity.this, HomeActivity.class));
                                         finish();
@@ -156,6 +157,12 @@ public class CalculateBMIActivity extends AppCompatActivity
 
                         }
         });
+    }
+    private void UserEmailPref(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("EMAIL", email);
+        edit.commit();
     }
 
     private void Validate() {
