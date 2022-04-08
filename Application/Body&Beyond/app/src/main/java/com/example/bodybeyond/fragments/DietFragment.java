@@ -33,8 +33,6 @@ public class DietFragment extends Fragment {
     List<Diets> DietsCat = new ArrayList<>();
     private RecyclerView dietRecyclerView;
     DietCatAdapter dietCatAdapter;
-    String dietType;
-    String useremail;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

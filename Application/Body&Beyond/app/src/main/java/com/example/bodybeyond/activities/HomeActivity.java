@@ -351,7 +351,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
         progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
 
-        txtCurrentSteps.setText(rf.format(currentSteps));
+        txtCurrentSteps.setText(String.valueOf(currentSteps));
 
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
         txtSuggSteps.setText(rf.format(targetStepsPerDay));
@@ -361,7 +361,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         stepProgressPercentage = findViewById(R.id.txtStepsProgressPercentage);
         stepProgressPercentage.setText(pf.format(progressStepsBurnedCal));
-
     }
 
     //Jasmine- Navigation drawer

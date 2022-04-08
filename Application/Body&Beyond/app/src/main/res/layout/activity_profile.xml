@@ -13,11 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="24dp"
+        android:background="#FFFCF4"
         android:contentDescription="@string/editProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        tools:ignore="ImageContrastCheck" />
+        app:srcCompat="@drawable/edit"
+        tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/txtProfileUserActivity"
