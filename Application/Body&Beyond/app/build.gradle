@@ -47,6 +47,7 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
     //For Google login
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
+
     //For Facebook login
     implementation 'com.facebook.android:facebook-login:latest.release'
     implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
@@ -79,3 +80,4 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.0'
     implementation 'com.google.android.material:material:1.2.0'
 }
+

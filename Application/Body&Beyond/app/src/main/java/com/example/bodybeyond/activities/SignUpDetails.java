@@ -25,8 +25,6 @@ import com.example.bodybeyond.utilities.Helper;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class SignUpDetails extends AppCompatActivity {
 
@@ -161,8 +159,8 @@ public class SignUpDetails extends AppCompatActivity {
     }
 
     private void QueryExecution(User user, UserDao userdao) {
-            try {
-                userDao.insertUsers(user);
+        try {
+            userdao.insertUsers(user);
             } catch (Exception ex) {
                 Log.d("Db", ex.getMessage());
             }

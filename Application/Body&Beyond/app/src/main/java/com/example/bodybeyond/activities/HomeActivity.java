@@ -2,17 +2,17 @@ package com.example.bodybeyond.activities;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +24,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -51,10 +51,6 @@ import java.time.ZonedDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import android.app.NotificationManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import androidx.core.app.NotificationCompat;
 
 public class HomeActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -85,7 +81,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     double targetStepsPerDay;
     int currentSteps;
 
-    //Navigation drawer
+    //Jasmine - Navigation drawer
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
@@ -120,7 +116,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
          SharedPreferences  sharedPreferences = getSharedPreferences("USER_EMAIL", MODE_PRIVATE);
          useremail = sharedPreferences.getString("EMAIL","null");
 
-        //navigation drawer code
+        //Jasmine - navigation drawer method call
         NavDrawer();
         SetUpToolbar();
 
@@ -352,6 +348,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    //Jasmine- Navigation drawer
     private void NavDrawer() {
         navigationView = (NavigationView) findViewById(R.id.navigation_menu);
 
@@ -372,10 +369,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
                            startActivity(aboutIntent);
                         break;
                     case  R.id.navLogout:
-                        SharedPreferences preferences =getSharedPreferences("USER_EMAIL", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.clear();
-                        editor.apply();
+                        getSharedPreferences("USER_EMAIL", Context.MODE_PRIVATE).edit().clear().apply();
+                        getSharedPreferences("SIGNUP_PREF", Context.MODE_PRIVATE).edit().clear().apply();
+                        getSharedPreferences("LOCAL_STORAGE", Context.MODE_PRIVATE).edit().clear().apply();
                         finish();
                         startActivity(new Intent(this, LoginActivity.class));
                     break;
@@ -386,7 +382,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         );
     }
-
+    //Jasmine- toolbar for navigation drawer
     public void SetUpToolbar() {
         userObj= GetUser(useremail);
         if (userObj == null) {

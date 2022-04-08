@@ -19,7 +19,7 @@
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_main2.xml" value="0.1" />
-        <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_profile.xml" value="0.16666666666666666" />
+        <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_profile.xml" value="0.14855072463768115" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_sign_up.xml" value="0.1" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_sign_up_details.xml" value="0.22" />
         <entry key="..\:/DemosAppDev/FinalProject/W22G9_Body-Beyond/Application/Body&amp;Beyond/app/src/main/res/layout/activity_splash.xml" value="0.14666666666666667" />
@@ -39,17 +39,23 @@
         <entry key="..\:/Project-3175-001/Application/Body&amp;Beyond/app/src/main/res/layout/layout_exercises.xml" value="0.25" />
         <entry key="..\:/Project-3175-001/Application/Body&amp;Beyond/app/src/main/res/layout/layout_exercises_ext.xml" value="0.25" />
         <entry key="app/src/main/res/layout/ProfileDrawerSection.xml" value="0.28229166666666666" />
-        <entry key="app/src/main/res/layout/activity_diet.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.2869476318359375" />
+        <entry key="app/src/main/res/layout/activity_contact.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_diet.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_exercise.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.22418478260869565" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.47616119384765626" />
         <entry key="app/src/main/res/layout/activity_navigation.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.625" />
-        <entry key="app/src/main/res/layout/activity_sign_up_details.xml" value="0.28022626631099024" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.3809005737304687" />
+        <entry key="app/src/main/res/layout/activity_sign_up_details.xml" value="0.34838880293208396" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.20878623188405798" />
         <entry key="app/src/main/res/layout/content_navigation_drawer.xml" value="0.29375" />
         <entry key="app/src/main/res/layout/drawer_section_profile.xml" value="0.3106836954752604" />
+        <entry key="app/src/main/res/layout/fragment_diet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_diet_ext.xml" value="0.17919006347656247" />
-        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.45379740397135415" />
+        <entry key="app/src/main/res/layout/layout_exercises_ext.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.3327967325846354" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_bb2.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_bb2_round.xml" value="0.1" />
       </map>

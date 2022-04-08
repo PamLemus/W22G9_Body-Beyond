@@ -65,4 +65,7 @@
     <string name="changeProfile">Save changes</string>
     <string name="editProfile">editProfileInfo</string>
     <string name="edit">Edit Information</string>
+    <string name="client_id">63183385366-5hgqj1mimmuf8q5939d0tfmu7sn4182d.apps.googleusercontent.com</string>
+    <string name="stringaboutUs">Body and Beyond have feature to calcute BMI  for knowing the status of the user health, which will show the user’s BMI is normal, overweight and underweight.Calculate user steps for each day to get the calories burned for a day. After getting this information app will show the appropriate exercise and diet.</string>
+    <string name="aboutUs">Body and Beyond have feature to calcute BMI  for knowing the status of the user health, which will show the user’s BMI is normal, overweight and underweight.Calculate user steps for each day to get the calories burned for a day. After getting this information app will show the appropriate exercise and diet.</string>
 </resources>
