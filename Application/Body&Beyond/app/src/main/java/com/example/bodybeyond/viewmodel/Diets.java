@@ -11,6 +11,11 @@ public class Diets {
         DietName = dietName;
     }
 
+    public Diets(String dietDescription, int dietImageItem) {
+        DietDescription = dietDescription;
+        DietImageItem = dietImageItem;
+    }
+
     public String getDietDescription() {
         return DietDescription;
     }

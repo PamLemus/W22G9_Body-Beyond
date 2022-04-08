@@ -42,8 +42,8 @@ public class ExerciseActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         Bundle bundle = getIntent().getExtras();
-        String exercise_activity = "Light";// bundle.getString("EXERCISE_ACTIVITY", null);
-        String exercise_type ="Cardio";// bundle.getString("EXERCISE_TYPE", null);
+        String exercise_activity = bundle.getString("EXERCISE_ACTIVITY", null);
+        String exercise_type = bundle.getString("EXERCISE_TYPE", null);
         title = binding.txtExercixeTitle;
         title.setText("Exercise for " + exercise_type);
         AddData(exercise_activity, exercise_type);

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25sp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txtViewDietExercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="15sp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:hint="@string/exerciseName"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgViewDietExercise"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:contentDescription="@string/exerciseName"
+        app:srcCompat="@drawable/cardio" />
+
+    <TextView
+        android:id="@+id/line4"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="15sp"
+        android:background="@color/yellow" />
+</LinearLayout>
