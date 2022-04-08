@@ -529,14 +529,14 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int i) { }
 
     private void UserCalRangePref(String range) {
-        SharedPreferences sharedPreferences = getSharedPreferences("DIET_RANGE", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("CATEGORY_DIET", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("DIET_RANGE", range);
         edit.commit();
     }
 
     private void UserActivity(String activity) {
-        SharedPreferences sharedPreferences = getSharedPreferences("EXERCISE_ACTIVITY", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("CATEGORY_EXERCISE", MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.putString("EXERCISE_ACTIVITY", activity);
         edit.commit();

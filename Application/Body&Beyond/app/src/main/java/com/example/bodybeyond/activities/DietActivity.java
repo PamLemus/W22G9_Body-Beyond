@@ -58,9 +58,9 @@ public class DietActivity extends AppCompatActivity {
         thruBtn = dietBinding.thursdayBtn;
         friBtn = dietBinding.fridayBtn;
         Bundle bundle = getIntent().getExtras();
-        diet_range = "Range 1";// bundle.getString("DIET_RANGE", null);
-        diet_type = "Vegan";// bundle.getString("DIET_TYPE", null);
-        diet_day = MONDAY;// bundle.getString("DIET_DAY", null);
+        diet_range = bundle.getString("DIET_RANGE", null);
+        diet_type = bundle.getString("DIET_TYPE", null);
+        diet_day = MONDAY;
         title = dietBinding.TextViewDietTitle;
         title.setText("Diet for " + diet_type);
         AddData(diet_type,diet_range,diet_day);

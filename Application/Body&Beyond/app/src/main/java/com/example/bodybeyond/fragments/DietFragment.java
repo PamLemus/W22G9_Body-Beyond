@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 
 import com.example.bodybeyond.R;
 import com.example.bodybeyond.activities.DietActivity;
+import com.example.bodybeyond.activities.ExerciseActivity;
 import com.example.bodybeyond.adapters.DietCatAdapter;
 import com.example.bodybeyond.viewmodel.Diets;
 
@@ -58,35 +59,23 @@ public class DietFragment extends Fragment {
         dietCatAdapter = new DietCatAdapter(DietsCat, new DietCatAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int i) {
+                SharedPreferences sharedActivity = getActivity().getSharedPreferences("CATEGORY_DIET", MODE_PRIVATE);
+                String range = sharedActivity.getString("DIET_RANGE","null");
+
+                Bundle bundle = new Bundle();
+                bundle.putString("DIET_TYPE",DietsCat.get(i).getDietDescription());
+                bundle.putString("DIET_RANGE",range);
+
                 Intent intent = new Intent(getActivity(), DietActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
-                dietType = DietsCat.get(i).getDietDescription();
             }
         });
         dietRecyclerView.setAdapter(dietCatAdapter);
-        UserDietTypePref(dietType);
-
-
     }
 
     private void AddData(){
         DietsCat.add(new Diets("Vegan",R.drawable.vegan));
         DietsCat.add(new Diets("Combination",R.drawable.combination));
     }
-
-    private void UserCalRangePref(String range) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("DIET_RANGE", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("DIET_RANGE", range);
-        edit.commit();
-    }
-
-    private void UserDietTypePref(String dietType) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("DIET_TYPE", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("DIET_TYPE", dietType);
-        edit.commit();
-    }
-
-
-}
+  }

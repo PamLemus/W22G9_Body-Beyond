@@ -58,14 +58,23 @@ public class ExerciseFragment extends Fragment {
         exerciseCatAdapter = new ExerciseCatAdapter(ExercisesCat, new ExerciseCatAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int i) {
+
+                SharedPreferences sharedActivity = getActivity().getSharedPreferences("CATEGORY_EXERCISE", MODE_PRIVATE);
+                activity = sharedActivity.getString("EXERCISE_ACTIVITY","null");
+
+                Bundle bundle = new Bundle();
+                bundle.putString("EXERCISE_TYPE",ExercisesCat.get(i).getDescription());
+                bundle.putString("EXERCISE_ACTIVITY",activity);
+
                 Intent intent = new Intent(getActivity(), ExerciseActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
-                exerciseType = ExercisesCat.get(i).getDescription();
+
 
             }
         });
         exerciseRecyclerView.setAdapter(exerciseCatAdapter);
-        UserExerciseTypePref(exerciseType);
+
     }
 
         private void AddData(){
@@ -74,19 +83,7 @@ public class ExerciseFragment extends Fragment {
         ExercisesCat.add(new Exercises("Weight training",R.drawable.weight_training));
     }
 
-    private void UserActivityPref(String activity) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("EXERCISE_ACTIVITY", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("EXERCISE_ACTIVITY", activity);
-        edit.commit();
-    }
 
-    private void UserExerciseTypePref(String exerciseType) {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("EXERCISE_TYPE", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putString("EXERCISE_TYPE", exerciseType);
-        edit.commit();
     }
 
 
-}
