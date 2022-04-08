@@ -1,7 +1,6 @@
 package com.example.bodybeyond.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,7 +46,6 @@ public class ExerciseActivity extends AppCompatActivity {
         String exercise_type = bundle.getString("EXERCISE_TYPE", null);
         title = binding.txtExercixeTitle;
         title.setText("Exercise for " + exercise_type);
-        title.setTextColor(Color.BLACK);
         AddData(exercise_activity, exercise_type);
         // Lookup the recyclerview in activity layout
         RecyclerView recyclerView = findViewById(R.id.exerciseRecyclerView);

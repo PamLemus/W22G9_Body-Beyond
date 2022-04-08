@@ -15,10 +15,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/exerciseName"
         android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
+        android:textColorHint="#78909C"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -41,10 +38,7 @@
         android:layout_weight="1"
         android:hint="@string/txtExerciseDescription"
         android:padding="5dp"
-        android:textColor="@color/black"
-        android:textColorHighlight="@color/black"
-        android:textColorHint="@color/black"
-        android:textColorLink="@color/black"
+        android:textColorHint="#757575"
         android:textSize="14sp" />
     android:layout_marginTop="10dp"/>
 </LinearLayout>

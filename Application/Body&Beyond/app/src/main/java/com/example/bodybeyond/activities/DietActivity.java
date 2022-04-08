@@ -1,7 +1,6 @@
 package com.example.bodybeyond.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,7 +63,6 @@ public class DietActivity extends AppCompatActivity {
         diet_day = MONDAY;
         title = dietBinding.TextViewDietTitle;
         title.setText("Diet for " + diet_type);
-        title.setTextColor(Color.BLACK);
         AddData(diet_type,diet_range,diet_day);
         RecyclerView recyclerView = findViewById(R.id.recyclerListViewDiet);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
