@@ -1,9 +1,12 @@
 package com.example.bodybeyond.viewmodel;
 
+import android.graphics.drawable.Drawable;
+
 public class Exercises {
     public String Description;
     public int ImageItem;
     public String ExerciseName;
+
 
     public String getExerciseName() {
         return ExerciseName;
@@ -33,5 +36,10 @@ public class Exercises {
         Description = description;
         ImageItem = imageItem;
         ExerciseName = exerciseName;
+    }
+
+    public Exercises(String description, int imageItem) {
+        Description = description;
+        ImageItem = imageItem;
     }
 }

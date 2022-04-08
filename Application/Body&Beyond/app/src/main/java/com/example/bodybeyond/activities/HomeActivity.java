@@ -94,6 +94,8 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
     String useremail;
     String username;
     User userObj;
+    String range;
+
 
     //Jaspal's Step Counter Implementation
     SensorManager sensorManager;
@@ -156,19 +158,33 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         BMRCalculation(age, height, weight, gender, activity);
 
 
-
         //step counter progress bar implementation.
         currentSteps = progressStatus;
         progressBarSteps = findViewById(R.id.progressBarSteps);
         progressStatus = prefs.getInt("steps", 0);
         currentSteps = progressStatus;
-        progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
-        progressBarSteps.setProgress(currentSteps);  //steps walked
+
         CustomScheduler();
 
         //Call Method to calculate and display target steps per day
         txtCurrentSteps = findViewById(R.id.txtCurrentSteps);
         targetSteps (activity, currentSteps);
+        progressBarSteps.setMax((int)targetStepsPerDay);  // target steps
+        progressBarSteps.setProgress(progressStatus);  //steps walked
+
+        //Definition of Ranges according with Suggested Calories Intake
+        if (suggCalIntakeFinal < 1500) {
+            range = "Range 1";
+        } else if (suggCalIntakeFinal <= 2350) {
+            range = "Range 2";
+        } else if (suggCalIntakeFinal > 2350) {
+            range = "Range 3";
+        }
+        UserCalRangePref(range);
+
+        //Call the method to get the activity
+        UserActivity(activity);
+
     }
 
     //Method to calculate BMI Number
@@ -291,7 +307,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         }
 
         //Basis of calculation is for Maintain Weight
-        if (gender.equals("Female")) {
+        if (gender.equals("F")) {
             suggCalIntakeMainNum = (activityFactor*femaleBMRFormula);
         } else {
             suggCalIntakeMainNum = (activityFactor*maleBMRFormula);
@@ -515,4 +531,18 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) { }
+
+    private void UserCalRangePref(String range) {
+        SharedPreferences sharedPreferences = getSharedPreferences("DIET_RANGE", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("DIET_RANGE", range);
+        edit.commit();
+    }
+
+    private void UserActivity(String activity) {
+        SharedPreferences sharedPreferences = getSharedPreferences("EXERCISE_ACTIVITY", MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString("EXERCISE_ACTIVITY", activity);
+        edit.commit();
+    }
 }
