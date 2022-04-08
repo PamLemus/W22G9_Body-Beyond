@@ -41,7 +41,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
-
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     //For Extension Functionalities
     //Animation
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
