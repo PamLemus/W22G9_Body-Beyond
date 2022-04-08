@@ -93,7 +93,7 @@ public class DietActivity extends AppCompatActivity {
         wedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddData("Combination",diet_range,WEDNESDAY);
+                AddData(diet_type,diet_range,WEDNESDAY);
                 recyclerView.setAdapter(new DietAdapter(dietList));
             }
         });
