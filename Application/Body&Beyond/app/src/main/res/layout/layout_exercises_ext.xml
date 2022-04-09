@@ -19,7 +19,7 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <pl.droidsonroids.gif.GifImageView
+    <ImageView
         android:id="@+id/exerciseListImageViewId"
         android:layout_width="wrap_content"
         android:layout_height="180dp"

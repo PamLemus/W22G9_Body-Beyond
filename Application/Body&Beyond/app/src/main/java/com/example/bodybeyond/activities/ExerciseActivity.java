@@ -65,7 +65,7 @@ public class ExerciseActivity extends AppCompatActivity {
     private void AddData(String exerciseActivity, String exerciseType)
     {
 
-        List<Exercise> exercises = null;
+        List<Exercise> exercises;
         BodyAndBeyondDB db = Room.databaseBuilder(getApplicationContext(), BodyAndBeyondDB.class, "BodyAndBeyondDB.db")
                 .allowMainThreadQueries().build();
         ExerciseDao exerciseDao = db.exerciseDao();

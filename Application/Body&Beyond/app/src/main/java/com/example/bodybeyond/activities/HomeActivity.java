@@ -180,7 +180,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         //Call the method to get the activity
         UserActivity(activity);
-
+        GetNotification("Welcome "+ username + " to Body And Beyond");
     }
 
     //Method to calculate BMI Number
@@ -351,7 +351,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         burnedCalperCurrentSteps = currentSteps * burnedCalPerStep;
         progressStepsBurnedCal = burnedCalperCurrentSteps / burnedCalPerDay;
 
-        txtCurrentSteps.setText(rf.format(currentSteps));
+        txtCurrentSteps.setText(String.valueOf(currentSteps));
 
         txtSuggSteps = findViewById(R.id.txtSuggStepsNum);
         txtSuggSteps.setText(rf.format(targetStepsPerDay));
@@ -361,7 +361,6 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
 
         stepProgressPercentage = findViewById(R.id.txtStepsProgressPercentage);
         stepProgressPercentage.setText(pf.format(progressStepsBurnedCal));
-
     }
 
     //Jasmine- Navigation drawer
@@ -445,6 +444,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         // If midnight is in the past, add one day
         if (now.compareTo(nextRun) > 0) {
             nextRun = nextRun.plusDays(1);
+            //nextRun = nextRun.plusSeconds(5);
         }
         // Get duration between now and midnight
         final Duration initialDelay = Duration.between(now, nextRun);
@@ -454,12 +454,13 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         scheduler.scheduleAtFixedRate(() -> resetStepCount(),
                 initialDelay.toMillis(),
                 Duration.ofDays(1).toMillis(),
+              //  Duration.ofSeconds(5).toMillis(),
                 TimeUnit.MILLISECONDS);
     }
 
     private void resetStepCount() {
         //   reset every 24 hours.
-        GetNotification();
+        GetNotification("Your Steps: " + steps);
         editor.clear();
         steps = 0;
         progressStatus = steps;
@@ -469,7 +470,7 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         progressBarSteps.setProgress(progressStatus);
     }
 
-    private void GetNotification() {
+    private void GetNotification(String str) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("B&B", "Body And Beyond", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -477,9 +478,9 @@ public class HomeActivity extends AppCompatActivity implements SensorEventListen
         }
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "B&B")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.ic_launcher_bb_round)
                 .setContentTitle("Notification")
-                .setContentText(String.valueOf(steps));
+                .setContentText(str);
         notification = builder.build();
         notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(1, notification);
