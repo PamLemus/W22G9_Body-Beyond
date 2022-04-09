@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class SignUpDetails extends AppCompatActivity {
     EditText password;
     Spinner spinnerActivity;
     Button signup;
+    ImageButton back;
     String userGender;
     final String FEMALE = "F";
     final String MALE = "M";
@@ -70,7 +72,13 @@ public class SignUpDetails extends AppCompatActivity {
         spinnerActivity.setAdapter(spinnerAdapter);
         signup = findViewById(R.id.buttonSignup);
         password = findViewById(R.id.txtUserPwd);
-
+        back = findViewById(R.id.imageButtonBackDetails);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUpDetails.this, SignUp.class));
+            }
+        });
         signup.setOnClickListener((View view) -> {
             userAge = Integer.parseInt(age.getText().toString());
             userWeight = Double.parseDouble(weight.getText().toString());
