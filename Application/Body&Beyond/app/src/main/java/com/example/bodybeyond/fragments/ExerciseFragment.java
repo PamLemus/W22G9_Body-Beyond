@@ -33,8 +33,6 @@ public class ExerciseFragment extends Fragment {
     List<Exercises> ExercisesCat = new ArrayList<>();
     private RecyclerView exerciseRecyclerView;
     ExerciseCatAdapter exerciseCatAdapter;
-    String exerciseType;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,8 +80,6 @@ public class ExerciseFragment extends Fragment {
         ExercisesCat.add(new Exercises("Yoga",R.drawable.yoga));
         ExercisesCat.add(new Exercises("Weight training",R.drawable.weight_training));
     }
-
-
     }
 
 

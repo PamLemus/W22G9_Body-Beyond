@@ -275,14 +275,16 @@
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/maletext"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <RadioButton
             android:id="@+id/radioBtnFemale"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="@string/FemaleText"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 
     <Spinner

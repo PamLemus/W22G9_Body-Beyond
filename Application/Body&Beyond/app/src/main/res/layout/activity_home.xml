@@ -320,13 +320,13 @@
                             android:id="@+id/TabItemDiets"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Diets" />
+                            android:text="@string/diets" />
 
                         <com.google.android.material.tabs.TabItem
                             android:id="@+id/TabItemExercise"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Exercise" />
+                            android:text="@string/exercise" />
 
 
                     </com.google.android.material.tabs.TabLayout>
@@ -350,9 +350,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-
             android:layout_marginTop="70dp"
-            app:menu="@menu/drawer_menu"></com.google.android.material.navigation.NavigationView>
+            app:menu="@menu/drawer_menu">
+
+        </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 
     <androidx.appcompat.widget.Toolbar
