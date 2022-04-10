@@ -181,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
                                         edit.commit();
                                         // UserEmailPref(email);
                                         Log.d("FACEBOOK..", jsonObject.toString());
-                                        Toast.makeText(LoginActivity.this, jsonObject.toString(), Toast.LENGTH_SHORT).show();
                                         RequestOptions requestOptions = new RequestOptions();
                                         requestOptions.dontAnimate();
                                         startActivity(new Intent(LoginActivity.this, CalculateBMIActivity.class));
